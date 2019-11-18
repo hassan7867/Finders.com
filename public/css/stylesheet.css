@@ -1,0 +1,25 @@
+.cursor-pointer{
+    cursor: pointer;
+}
+.nav-bar-properties{
+    background: #f4fcff;
+}
+.btn-success-custom {
+    background-color: #f4fcff;
+    background-image: none;
+    border-color: #f4fcff;
+    border: 2px solid;
+    /*border: none !important;*/
+
+}
+.btn-success-custom:not(.btn-inverse-light) {
+    color: #000033;
+    border: 2px solid;
+    border-color: #f4fcff;
+}
+
+.btn-success-custom:hover{
+    color: #ffffff;
+    background-color: #f4fcff;
+    border-color: #f4fcff;
+}
