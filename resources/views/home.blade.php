@@ -6,13 +6,17 @@
 @section('content')
     <div class="container mt-5">
         <div class="w-25">
-        <button class="btn btn-success-custom">Buy</button>
-        <button class="btn btn-success-custom ml-1">Rent</button>
+            <nav class="nav nav-pills">
+                <a href="#" class="nav-item nav-link">Buy</a>
+                <a href="#" class="nav-item nav-link">Rent</a>
+            </nav>
+        {{--<button class="btn btn-success-custom">Buy</button>--}}
+        {{--<button class="btn btn-success-custom ml-1">Rent</button>--}}
         </div>
         <br>
-        <div class="mt-2">
+        <div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <input type="text" placeholder="enter location" class="form-control" id="qty">
                     <div id='div_change_qty' name='div_change_qty' style='display:none;width:200px;height:200px;position:absolute;z-index:10;background:white' >
                         <table class="table" style="background: #f4fcff" width='100%' height='100%'>
@@ -22,34 +26,31 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <input type="text" placeholder="enter budget" class="form-control">
+                <div class="col-md-3">
+                    <input type="text" placeholder="enter min budget" class="form-control">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <input type="text" placeholder="enter max budget" class="form-control">
+                </div>
+                <div class="col-md-3">
                     <button class="form-control btn btn-success-custom">Search</button>
                 </div>
             </div>
         </div>
-        <table class="table mt-4">
-            <thead style="background: #f4fcff">
-                <tr>
-                    <th>#</th>
-                    <th>Property Name</th>
-                    <th>Price</th>
-                    <th>Location</th>
-                    <th>Attachments</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>dummy property</td>
-                <td>1000</td>
-                <td>Lahore</td>
-                <td><a href="#">View</a></td>
-            </tr>
-            </tbody>
-        </table>
+        @foreach ($properties as $property)
+                <div class="row mt-4">
+                    <div class="col-md-6"><img width="550px" height="300px" src="http://localhost/finders.com/public/storage/{{$property->main_image}}"></div>
+                    <div class="col-md-6">
+                        <h1 class="text-left">PKR {{$property->price}}</h1>
+                        <h3>{{$property->location}}, {{$property->city}}, {{$property->country}}</h3>
+                        <a href="#"><h4>{{$property->title}}</h4></a>
+                        <h5>{{$property->description}} </h5><a href="#"><h5>read more</h5></a>
+                        <h6>Added on {{$property->date_posting}}</h6>
+                        <button class="btn btn-success">Call</button>
+                        <button class="btn btn-success">Email</button>
+                    </div>
+                </div>
+        @endforeach
     </div>
 
 
