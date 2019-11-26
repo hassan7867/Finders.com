@@ -22,19 +22,19 @@
 
     .success-btn-custom {
         background: #f8f9fa;
-        color: #1cd8d4;
-        border: 1px solid #1cd8d4;
+        color: #002F34;
+        border: 1px solid #002F34;
         font-weight: bold;
     }
 
-    .success-btn-custom:hover {
-        background: #1cd8d4;
+    .success-btn-custom:hover,  .success-btn-custom:active{
+        background: #002F34;
         color: white;
         font-weight: bold;
     }
 
     .selected-button {
-        background: #1cd8d4;
+        background: #002F34;
         color: white;
         font-weight: bold;
         text-align: center;
@@ -47,8 +47,8 @@
 
     .un-selected-button {
         background: #f8f9fa;
-        color: #1cd8d4;
-        border: 1px solid #1cd8d4;
+        color: #002F34;
+        border: 1px solid #002F34;
         font-weight: bold;
         text-align: center;
         padding: 5px;
@@ -57,7 +57,7 @@
     }
 
     .un-selected-button:hover {
-        background: #1cd8d4;
+        background: #002F34;
         color: white;
     }
 
@@ -70,7 +70,7 @@
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <body onload="typeWriter()">
-<nav class="navbar navbar-expand-lg navbar-light" style="background: #1cd8d4;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background: #002F34;">
     <a class="navbar-brand nav-text-custom" href="#">Finders</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
     </div>
 </nav>
 <div class="container mt-5">
-    <h1 style="font-weight: bold; font-size: 25px; color: #1cd8d4" id="AutoText"></h1>
+    <h1 style="font-weight: bold; font-size: 25px; color: #002F34" id="AutoText"></h1>
     <div class="w-25 mt-3">
         <button class="selected-button" onclick="selectPurpose('buy')" id="buy-purpose">Buy</button>
         <button class="un-selected-button" onclick="selectPurpose('rent')" id="rent-purpose">Rent</button>
@@ -125,7 +125,7 @@
                 <input type="text" placeholder="Enter max budget" class="form-control">
             </div>
             <div class="col-md-2">
-                <button class="form-control btn success-btn-custom">Find</button>
+                <button class="form-control success-btn-custom">Find</button>
             </div>
         </div>
     </div>
@@ -154,7 +154,7 @@
         <div class="modal-content">
             <h4 class="mt-2 text-center">Contact Us</h4>
             <p class="text-center">Locations Property And Construction</p>
-            <div class="w-100" style="border: 1px solid green"></div>
+            <div class="w-100" style="border: 1px solid #002F34"></div>
 
             <div class="row ml-3 mt-2">
                 <div class="col-3">Name</div> <div class="col-4">Ali Riaz</div>
