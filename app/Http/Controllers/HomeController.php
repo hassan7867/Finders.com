@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Property;
+use App\PropertyAttachment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $properties = Property::all();
+        for ($i = 0; $i < count($properties); $i++) {
+            $properties[$i]['main_image'] = PropertyAttachment::where('id_property', $properties[$i]->id_property)->first()['image_path'];
+        }
+        return view('welcome')->with(['properties' => $properties]);
     }
 }
