@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('show-sell-property', 'PropertyController@index');
+Route::get('sell-property', 'PropertyController@store');
+
