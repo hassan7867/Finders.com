@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+@extends('top-nav')
+@section('content')
+<script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
+<script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.main.js') }}" ></script>
+<script src="../js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<?php echo asset('css/stylesheet.css')?>" type="text/css">
 <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-{{--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--}}
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>--}}
-{{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--}}
-{{--integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--}}
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>--}}
 <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
 <style>
-    .nav-text-custom {
-        color: white !important;
-        font-weight: bold;
-    }
 
     body {
         background: #f8f9fa;
@@ -61,61 +55,69 @@
         color: white;
     }
 
-    .top-search-bar{
-        border-radius: 5px;
-        box-shadow: white;
+    #success-notification {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #71c016;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+    }
+
+    #error-notification {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #ff4747;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+    }
+
+    #success-notification.show, #error-notification.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    .active-top-link{
+        background: white; border-radius: 4px; color: #002F34 !important;
     }
 </style>
 
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <body onload="typeWriter()">
-<nav class="navbar navbar-expand-lg navbar-light" style="background: #002F34;">
-    <a class="navbar-brand nav-text-custom" href="#">Finders</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link nav-text-custom" href="#">Homes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link nav-text-custom" href="#">Plots</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="mr-sm-2 top-search-bar" type="search" placeholder="Enter Property ID" aria-label="Search">
-            <button class="btn btn-outline my-2 my-sm-0" style="background: white; font-size: 12px" type="submit">Find</button>
-            <button class="btn btn-outline my-2 my-sm-0 ml-2" style="background: white; font-size: 12px">Add Property</button>
-        </form>
-    </div>
-</nav>
 <div class="container mt-5">
     <h1 style="font-weight: bold; font-size: 25px; color: #002F34" id="AutoText"></h1>
     <div class="w-25 mt-3">
         <button class="selected-button" onclick="selectPurpose('buy')" id="buy-purpose">Buy</button>
         <button class="un-selected-button" onclick="selectPurpose('rent')" id="rent-purpose">Rent</button>
-        {{--<button class="btn btn-success-custom">Buy</button>--}}
-        {{--<button class="btn btn-success-custom ml-1">Rent</button>--}}
     </div>
     <br>
     <div>
         <div class="row">
             <div class="col-md-3">
-                <select class="form-control">
-                    <option>Select country</option>
-                    <option>Pakistan</option>
-                    <option>United Arab Emirates</option>
+                <select onchange="getCities()" class="form-control" id="select-country">
+                    <option value="-1">Select country</option>
+                    <option value="PK">Pakistan</option>
+                    <option value="AE">United Arab Emirates</option>
                 </select>
             </div>
             <div class="col-md-3">
-                <select class="form-control">
+                <select class="form-control" id="select-city">
                     <option>Select city</option>
-                    <option>ABB</option>
-                    <option>BB</option>
                 </select>
             </div>
             <div class="col-md-2">
@@ -151,21 +153,19 @@
 
 <div class="modal fade" id="call-modal">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <h4 class="mt-2 text-center">Contact Us</h4>
-            <p class="text-center">Locations Property And Construction</p>
-            <div class="w-100" style="border: 1px solid #002F34"></div>
-
+        <div class="modal-content mb-5">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">Contact Us</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h6 class="text-center"><b>Locations Property And Construction</b></h6>
             <div class="row ml-3 mt-2">
                 <div class="col-3">Name</div> <div class="col-4">Ali Riaz</div>
             </div>
-            <div class="row ml-3">
+            <div class="row ml-3 mb-5">
                 <div class="col-3">Tel</div> <div class="col-4">+923060460186</div>
-            </div>
-            <div class="row">
-            <div class="col-5">
-            <button class="btn btn-outline-danger mt-2 mb-1" style="margin-left: 220px">Close</button>
-            </div>
             </div>
     </div>
 </div>
@@ -176,35 +176,44 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Email</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-email-modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form>
                 <div class="modal-body">
                     <h5 class="mt-2">Location Property and Construction</h5>
-                    <form>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Email:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text" name="senderEmail" class="form-control" id="sender-email" placeholder="enter your email">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Phone :</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text"  name="senderPhone"  class="form-control" id="sender-phone" placeholder="enter your contact number">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
+                            <textarea name="senderMessage" class="form-control" id="sender-message">I would like to inquire about your property Zameen - ID19350411. Please contact me at your earliest convenience.
+                            </textarea>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn success-btn-custom">Send message</button>
+                    <button id="send-btn" style="display: inline" type="button" class="btn success-btn-custom" onclick="sendEmail()">Send message</button>
+                    <button style="display: none" class="btn success-btn-custom" id="sending-btn">
+                        <span class="spinner-border spinner-border-sm" role="status"
+                              aria-hidden="true"></span> Sending
+                    </button>
+
                 </div>
+                </form>
             </div>
         </div>
     </div>
-
+<div id="success-notification"></div>
+<div id="error-notification"></div>
 <script>
+
+
     function selectPurpose(type) {
         if (type === 'buy') {
             document.getElementById('buy-purpose').classList.add("selected-button");
@@ -234,5 +243,88 @@
         }
     }
 
+    function successNotification(successMessage) {
+        var x = document.getElementById("success-notification");
+        x.innerHTML = successMessage;
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 2000);
+    }
+
+    function errorNotification(errorMessage) {
+        let notification = document.getElementById("error-notification");
+        notification.innerHTML = errorMessage;
+        notification.className = "show";
+        setTimeout(function () {
+            notification.className = notification.className.replace("show", "");
+        }, 2000);
+    }
+
+    function sendEmail(){
+        document.getElementById('send-btn').style.display = 'none';
+        document.getElementById('sending-btn').style.display = 'inline';
+       let email = document.getElementById('sender-email').value;
+       let phone = document.getElementById('sender-phone').value;
+       let message = document.getElementById('sender-message').value;
+        $.ajax({
+            type: "POST",  //type of method
+            url: "http://finders.com/api/email/send",  //your page
+            data: {email: email, phone: phone, message: message},// passing the values
+            success: function (res) {
+                res = JSON.parse(res);
+                document.getElementById('send-btn').style.display = 'inline';
+                document.getElementById('sending-btn').style.display = 'none';
+                resetEmailForm();
+                document.getElementById('close-email-modal').click();
+                if(res.status){
+                    successNotification(res.message);
+                }else{
+                    errorNotification(res.message);
+                }
+            }
+        });
+    }
+
+    function resetEmailForm() {
+        document.getElementById('sender-email').value = '';
+        document.getElementById('sender-phone').value = '';
+        document.getElementById('sender-message').value = '';
+    }
+
+    // top nav link code
+    let allLinks = ['home', 'add-property', 'about-us', 'contact-us'];
+    changeNavLink('home');
+    function changeNavLink(link){
+        for (let i=0;i<allLinks.length;i++){
+            document.getElementById(allLinks[i]).classList.remove('active-top-link');
+        }
+        document.getElementById(link).classList.add('active-top-link');
+    }
+
+    //get cities
+    function getCities(){
+        let country = (document.getElementById('select-country').value);
+        $.ajax({
+            type: "POST",  //type of method
+            url: "http://finders.com/api/cities/get",  //your page
+            data: {country: country},// passing the values
+            success: function (res) {
+                res = JSON.parse(res);
+                document.getElementById('select-city').innerHTML = '';
+                let child =  document.createElement("option");
+                child.innerHTML = "Select City";
+                document.getElementById('select-city').appendChild(child);
+                for(let i=0; i<res.length; i++){
+                    let child =  document.createElement("option");
+                    child.innerHTML = res[i];
+                    child.value = res[i];
+                    document.getElementById('select-city').appendChild(child);
+                }
+            }
+        });
+    }
+
 </script>
 </html>
+@endsection
