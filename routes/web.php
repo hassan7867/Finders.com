@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('show-sell-property', 'PropertyController@index');
-Route::get('sell-property', 'PropertyController@store');
 Route::get('/','HomeController@index');
+//Route::get('Email/Send','SendEmailController@sendEmail');
+Route::get('Email/Send','HomeController@jsonData');
+Route::get('wizard','HomeController@getWizard');
