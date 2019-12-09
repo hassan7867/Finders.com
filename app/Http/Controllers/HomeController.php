@@ -21,4 +21,23 @@ class HomeController extends Controller
         }
         return view('welcome')->with(['properties' => $properties]);
     }
+
+    public function getCities(Request $request){
+        $jsonString = file_get_contents(base_path('public/json/cities.json'));
+        $data = json_decode($jsonString, true);
+        $cities = [];
+        for ($i=0; $i<count($data);$i++){
+            if($data[$i]['country'] == $request->country){
+                array_push($cities, $data[$i]['name']);
+            }
+        }
+       return json_encode($cities);
+    }
+
+    public function getWizard(){
+        return view('wizard');
+    }
+    public function getTop(){
+        return view('top-nav');
+    }
 }

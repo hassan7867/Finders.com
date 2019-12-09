@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('email/send','SendEmailController@sendEmail');
+Route::post('cities/get','HomeController@getCities');
+Route::get('wizard','HomeController@getWizard');
+Route::get('top','HomeController@getTop');
