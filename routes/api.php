@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('email/send','SendEmailController@sendEmail');
 Route::post('cities/get','HomeController@getCities');
 Route::get('wizard','HomeController@getWizard');
-Route::get('top','HomeController@getTop');
+Route::resource('property','PropertyController');
+//Route::get('top','HomeController@getTop');

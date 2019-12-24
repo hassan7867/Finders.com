@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/','HomeController@index');
 //Route::get('Email/Send','SendEmailController@sendEmail');
 Route::get('Email/Send','HomeController@jsonData');
