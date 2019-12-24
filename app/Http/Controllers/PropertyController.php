@@ -154,4 +154,8 @@ class PropertyController extends Controller
     {
         //
     }
+
+    public function getContact($propertyId){
+        return json_encode(PropertyContact::where('id_property', $propertyId)->first());
+    }
 }

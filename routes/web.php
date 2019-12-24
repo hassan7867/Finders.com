@@ -14,4 +14,4 @@
 Route::get('/','HomeController@index');
 //Route::get('Email/Send','SendEmailController@sendEmail');
 Route::get('Email/Send','HomeController@jsonData');
-Route::get('wizard','HomeController@getWizard');
+Route::get('property/create','HomeController@getWizard');

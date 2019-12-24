@@ -32,16 +32,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ml-5" onclick="changeNavLink('home')">
-                <a class="nav-link nav-text-custom" href="#" id="home" >Home</a>
+                <a class="nav-link nav-text-custom" href="{{url('/')}}" id="home" >Home</a>
             </li>
             <li class="nav-item ml-3" onclick="changeNavLink('add-property')">
-                <a class="nav-link nav-text-custom" href="#" id="add-property">Add Property</a>
+                <a class="nav-link nav-text-custom" href="{{url('property/create')}}" id="add-property">Add Property</a>
             </li>
             <li class="nav-item ml-3" onclick="changeNavLink('about-us')">
                 <a class="nav-link nav-text-custom" href="#" id="about-us">About Us</a>
             </li>
             <li class="nav-item ml-3" onclick="changeNavLink('contact-us')">
-                <a class="nav-link nav-text-custom" href="#" id="contact-us">Contact Us</a>
+                <a class="nav-link nav-text-custom" href="{{url('/wizard')}}" id="contact-us">Contact Us</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -57,7 +57,11 @@
 <script>
     // top nav link code
     let allLinks = ['home', 'add-property', 'about-us', 'contact-us'];
-    changeNavLink('home');
+    if(window.location.href.includes('property/create')){
+        changeNavLink('add-property');
+    }else{
+        changeNavLink('home');
+    }
     function changeNavLink(link){
         for (let i=0;i<allLinks.length;i++){
             document.getElementById(allLinks[i]).classList.remove('active-top-link');

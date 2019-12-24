@@ -143,8 +143,8 @@
                 <h5>{{$property->description}} </h5><a href="#"><h5>read more</h5></a>
                 <h6>Added on {{$property->date_posting}}</h6>
                 <h6>{{$property->purpose}}</h6>
-                <button class="btn success-btn-custom" data-toggle="modal" data-target="#call-modal">Call</button>
-                <button class="btn success-btn-custom" data-toggle="modal" data-target="#email-modal">Email</button>
+                <button class="btn success-btn-custom" data-toggle="modal" data-target="#call-modal" onclick="getCallInfo({{$property->id}})">Call</button>
+                <button class="btn success-btn-custom" data-toggle="modal" data-target="#email-modal" onclick="setPropertyInfo({{$property->id_property}}, {{$property->id}})">Email</button>
             </div>
         </div>
     @endforeach
@@ -155,17 +155,16 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content mb-5">
             <div class="modal-header">
-                <h5 class="modal-title text-center">Contact Us</h5>
+                <h5 class="modal-title text-center">Contact Owner</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <h6 class="text-center"><b>Locations Property And Construction</b></h6>
             <div class="row ml-3 mt-2">
-                <div class="col-3">Name</div> <div class="col-4">Ali Riaz</div>
+                <div class="col-3">Name</div> <div class="col-4" id="contact-name"></div>
             </div>
             <div class="row ml-3 mb-5">
-                <div class="col-3">Tel</div> <div class="col-4">+923060460186</div>
+                <div class="col-3">Tel</div> <div class="col-4" id="contact-mobile"></div>
             </div>
     </div>
 </div>
@@ -175,25 +174,25 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Email</h5>
+                    <h5 class="modal-title">Send Email</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-email-modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form>
                 <div class="modal-body">
-                    <h5 class="mt-2">Location Property and Construction</h5>
+                    <h5 class="mt-2"></h5>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Email:</label>
                             <input type="text" name="senderEmail" class="form-control" id="sender-email" placeholder="enter your email">
                         </div>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Phone :</label>
+                            <label for="recipient-name" class="col-form-label">Phone:</label>
                             <input type="text"  name="senderPhone"  class="form-control" id="sender-phone" placeholder="enter your contact number">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea name="senderMessage" class="form-control" id="sender-message">I would like to inquire about your property Zameen - ID19350411. Please contact me at your earliest convenience.
+                            <textarea name="senderMessage" class="form-control" id="sender-message">
                             </textarea>
                         </div>
                 </div>
@@ -213,7 +212,7 @@
 <div id="error-notification"></div>
 <script>
 
-
+    let currentEmailPropertyId = -1;
     function selectPurpose(type) {
         if (type === 'buy') {
             document.getElementById('buy-purpose').classList.add("selected-button");
@@ -270,7 +269,7 @@
         $.ajax({
             type: "POST",  //type of method
             url: "http://finders.com/api/email/send",  //your page
-            data: {email: email, phone: phone, message: message},// passing the values
+            data: {email: email, phone: phone, message: message, propertyId : currentEmailPropertyId},// passing the values
             success: function (res) {
                 res = JSON.parse(res);
                 document.getElementById('send-btn').style.display = 'inline';
@@ -324,6 +323,25 @@
             }
         });
     }
+
+    function getCallInfo(propertyId) {
+        $.ajax({
+            type: "GET",  //type of method
+            url: `http://finders.com/api/property/${propertyId}/contact/get`,  //your page
+            success: function (res) {
+                res = JSON.parse(res);
+                document.getElementById('contact-name').innerHTML = res.name;
+                document.getElementById('contact-mobile').innerHTML = res.mobile;
+            }
+        });
+    }
+
+    function setPropertyInfo(propertyId, id) {
+        currentEmailPropertyId = id;
+        document.getElementById('sender-message').innerText = "I would like to inquire about your property of ID = " + propertyId + ". Please contact me at your earliest convenience."
+    }
+
+
 
 </script>
 </html>
