@@ -1,27 +1,5 @@
 (function($) {
     var form = $("#signup-form");
-    form.validate({
-        errorPlacement: function errorPlacement(error, element) {
-            element.before(error);
-        },
-        rules: {
-            username: {
-                required: true,
-            },
-            email: {
-                required: true,
-                email : true
-            }
-        },
-        messages : {
-            email: {
-                email: 'Not a valid email address <i class="zmdi zmdi-info"></i>'
-            }
-        },
-        onfocusout: function(element) {
-            $(element).valid();
-        },
-    });
     form.steps({
         headerTag: "h3",
         bodyTag: "fieldset",
@@ -34,17 +12,17 @@
         },
         titleTemplate: '<div class="title"><span class="number">#index#</span>#title#</div>',
         onStepChanging: function(event, currentIndex, newIndex) {
-            form.validate().settings.ignore = ":disabled,:hidden";
+            //form.validate().settings.ignore = ":disabled,:hidden";
             // console.log(form.steps("getCurrentIndex"));
-            return form.valid();
+            return true;
         },
         onFinishing: function(event, currentIndex) {
-            form.validate().settings.ignore = ":disabled";
-            console.log(getCurrentIndex);
-            return form.valid();
+           // form.validate().settings.ignore = ":disabled";
+          //  console.log(getCurrentIndex);
+            return true;
         },
         onFinished: function(event, currentIndex) {
-            alert('Sumited');
+            saveProperty();
         },
         // onInit : function (event, currentIndex) {
         //     event.append('demo');
@@ -64,24 +42,19 @@
     });
 
 
-    $.dobPicker({
-        daySelector: '#expiry_date',
-        monthSelector: '#expiry_month',
-        yearSelector: '#expiry_year',
-        dayDefault: 'DD',
-        yearDefault: 'YYYY',
-        minimumAge: 0,
-        maximumAge: 120
-    });
+    // $.dobPicker({
+    //     daySelector: '#expiry_date',
+    //     monthSelector: '#expiry_month',
+    //     yearSelector: '#expiry_year',
+    //     dayDefault: 'DD',
+    //     yearDefault: 'YYYY',
+    //     minimumAge: 0,
+    //     maximumAge: 120
+    // });
 
-    $('#password').pwstrength();
 
-    $('#button').click(function () {
-        $("input[type='file']").trigger('click');
-    })
-    
-    $("input[type='file']").change(function () {
-        $('#val').text(this.value.replace(/C:\\fakepath\\/i, ''))
-    })
+    // $('#button').click(function () {
+    //     $("input[type='file']").trigger('click');
+    // })
 
 })(jQuery);

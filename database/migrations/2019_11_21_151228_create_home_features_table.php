@@ -15,11 +15,11 @@ class CreateHomeFeaturesTable extends Migration
     {
         Schema::create('home_features', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('total_bedrooms');
-            $table->string('total_bathrooms');
-            $table->string('dining_room');
-            $table->string('kitchen');
-            $table->string('parking_space');
+            $table->string('bedrooms')->default(0);
+            $table->string('bathrooms')->default(0);
+            $table->string('kitchens')->default(0);
+            $table->string('storerooms')->default(0);
+            $table->string('home_parking_space')->default(0);
             $table->string('id_property');
             $table->timestamps();
         });

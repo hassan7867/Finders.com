@@ -37,7 +37,4 @@ class HomeController extends Controller
     public function getWizard(){
         return view('wizard');
     }
-    public function getTop(){
-        return view('top-nav');
-    }
 }
