@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PropertyContact;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -9,6 +10,7 @@ class SendEmailController extends Controller
 {
     public function sendEmail(Request $request){
 
+        $receiverEmail = PropertyContact::where('id_property', $request->propertyId)->first()['email'];
         $mail = new PHPMailer(false);
         $mail->isSMTP();
         $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
@@ -19,7 +21,7 @@ class SendEmailController extends Controller
         $mail->Username = 'task.board007@gmail.com';
         $mail->Password = 'Toystory@123';
         $mail->setFrom($request->email, $request->email);
-        $mail->addAddress('me.aliriaz007@gmail.com');
+        $mail->addAddress($receiverEmail);
         $mail->Subject = 'Finders Property Inquiry Email';
         $mail->msgHTML('Message <br>' . $request->message . '<br><br><br>' . 'From<br>Contact number : ' . $request->phone . '<br>Email : ' . $request->email); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
         $mail->AltBody = $request->message . '<br>' . 'Sender Email : ' . $request->email;

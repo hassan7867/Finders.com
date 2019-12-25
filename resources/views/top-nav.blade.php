@@ -32,10 +32,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ml-5" onclick="changeNavLink('home')">
-                <a class="nav-link nav-text-custom" href="#" id="home" >Home</a>
+                <a class="nav-link nav-text-custom" href="{{url('/')}}" id="home" >Home</a>
             </li>
             <li class="nav-item ml-3" onclick="changeNavLink('add-property')">
-                <a class="nav-link nav-text-custom" href="#" id="add-property">Add Property</a>
+                <a class="nav-link nav-text-custom" href="{{url('property/create')}}" id="add-property">Add Property</a>
             </li>
             <li class="nav-item ml-3" onclick="changeNavLink('about-us')">
                 <a class="nav-link nav-text-custom" href="#" id="about-us">About Us</a>
@@ -44,10 +44,10 @@
                 <a class="nav-link nav-text-custom" href="#" id="contact-us">Contact Us</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="mr-sm-2 top-search-bar" type="search" placeholder="Enter Property ID" aria-label="Search">
-            <button class="btn btn-outline my-2 my-sm-0" style="background: white; font-size: 12px" type="submit">Find</button>
-        </form>
+        {{--<form class="form-inline my-2 my-lg-0">--}}
+            {{--<input class="mr-sm-2 top-search-bar" type="search" placeholder="Enter Property ID" aria-label="Search">--}}
+            {{--<button class="btn btn-outline my-2 my-sm-0" style="background: white; font-size: 12px" type="submit">Find</button>--}}
+        {{--</form>--}}
     </div>
 </nav>
 
@@ -57,7 +57,11 @@
 <script>
     // top nav link code
     let allLinks = ['home', 'add-property', 'about-us', 'contact-us'];
-    changeNavLink('home');
+    if(window.location.href.includes('property/create')){
+        changeNavLink('add-property');
+    }else{
+        changeNavLink('home');
+    }
     function changeNavLink(link){
         for (let i=0;i<allLinks.length;i++){
             document.getElementById(allLinks[i]).classList.remove('active-top-link');

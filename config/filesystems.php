@@ -63,6 +63,10 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+        'data' => [
+            'driver' => 'local',
+            'root'   =>   base_path().'/data',
+        ],
 
     ],
 

@@ -18,9 +18,35 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($purpose, $country, $city, $location)
     {
-        return view('sellpropertywizard');
+        $properties = Property::where('id', '>', 0);
+        if ($purpose != 'all') {
+            $properties->where('purpose', '=', $purpose);
+        }
+        if ($country != 'all') {
+            $properties->where('country', '=', $country);
+        }
+        if ($city != 'all') {
+            $properties->where('city', '=', $city);
+        }
+        if ($location != 'all') {
+            $properties->where('location', '=', $location);
+        }
+        $properties = $properties->get();
+        for ($i = 0; $i < count($properties); $i++) {
+            $properties[$i]['main_image'] = PropertyAttachment::where('id_property', $properties[$i]->id)->first()['image_path'];
+            if ($properties[$i]['property_type'] == 'home') {
+                $properties[$i]['home_features'] = HomeFeature::where('id_property', $properties[$i]->id)->first();
+            }
+            if ($properties[$i]['property_type'] == 'plot') {
+                $properties[$i]['plot_features'] = PlotFeature::where('id_property', $properties[$i]->id)->first();
+            }
+            if ($properties[$i]['property_type'] == 'commercial') {
+                $properties[$i]['commercial_features'] = CommercialFeature::where('id_property', $properties[$i]->id)->first();
+            }
+        }
+        return view('welcome')->with(['properties' => $properties]);
     }
 
     /**
@@ -36,7 +62,7 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +84,7 @@ class PropertyController extends Controller
         $property->date_posting = date('Y-m-d');
         $result = $property->save();
 
-        if($request->propertyType == 'home'){
+        if ($request->propertyType == 'home') {
             $homeFeatures = new HomeFeature();
             $homeFeatures->bedrooms = $request->bedroomFeature;
             $homeFeatures->bathrooms = $request->bathroomFeature;
@@ -67,7 +93,7 @@ class PropertyController extends Controller
             $homeFeatures->home_parking_space = $request->homeParkingSpaceFeature;
             $homeFeatures->id_property = $property->id;
             $homeFeatures->save();
-        }else if($request->propertyType == 'plot'){
+        } else if ($request->propertyType == 'plot') {
             $plotFeatures = new PlotFeature();
             $plotFeatures->id_property = $property->id;
             $plotFeatures->corner = $request->cornerFeature;
@@ -77,7 +103,7 @@ class PropertyController extends Controller
             $plotFeatures->sui_gas = $request->suiGasFeature;
             $plotFeatures->save();
 
-        }else if($request->propertyType == 'commercial'){
+        } else if ($request->propertyType == 'commercial') {
             $commercialFeature = new CommercialFeature();
             $commercialFeature->id_property = $property->id;
             $commercialFeature->built_in_year = $request->builtinYearFeature;
@@ -91,7 +117,7 @@ class PropertyController extends Controller
         if (!$request->file('images') == '' && !empty($request->file('images'))) {
             foreach ($request->file('images') as $image) {
                 $newName = rand(10, 1000) . time() . $image->getClientOriginalName();
-                Storage::disk('local')->put($newName, 'Contents');
+                $image->move(base_path('/data'), $newName);
                 $attachments = new PropertyAttachment();
                 $attachments->id_property = $property->id;
                 $attachments->image_path = $newName;
@@ -113,7 +139,7 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -124,7 +150,7 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -135,8 +161,8 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -147,11 +173,40 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    public function getContact($propertyId)
+    {
+        return json_encode(PropertyContact::where('id_property', $propertyId)->first());
+    }
+
+    public function details($propertyId)
+    {
+        $properties = Property::where('id', $propertyId)->first();
+            $properties['images'] = PropertyAttachment::where('id_property', $properties->id)->get();
+            if($properties['property_type'] == 'home'){
+                $properties['home_features'] = HomeFeature::where('id_property', $properties->id)->first();
+            }
+            if($properties['property_type'] == 'plot'){
+                $properties['plot_features'] = PlotFeature::where('id_property', $properties->id)->first();
+            }
+            if($properties['property_type'] == 'commercial'){
+                $properties['commercial_features'] = CommercialFeature::where('id_property', $properties->id)->first();
+            }
+        return view('property-details')->with(['properties' => $properties]);
+    }
+
+    public function getImage(Request $request){
+        $file = base_path("data/") . $request->attachment;
+        $type = mime_content_type($file);
+        header('Content-Type:' . $type);
+        header('Content-Length: ' . filesize($file));
+        return readfile($file);
     }
 }
