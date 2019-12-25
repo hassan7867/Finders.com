@@ -34,6 +34,9 @@
                 document.getElementById('country-validate').style.display = 'none';
                 document.getElementById('city-validate').style.display = 'none';
                 document.getElementById('location-validate').style.display = 'none';
+                city = document.getElementById('select-city').value;
+                placelocation = document.getElementById('select-location').value;
+                country = (document.getElementById('select-country').value);
                 return true;
             }
             if (newIndex === 3) {
@@ -82,6 +85,12 @@
                 document.getElementById('property-price-validate').style.display = 'none';
                 document.getElementById('property-land-area-validate').style.display = 'none';
                 document.getElementById('property-expiry-after-validate').style.display = 'none';
+                propertyTitle = document.getElementById('property-title').value;
+                propertyDescription = document.getElementById('property-description').value;
+                propertyPrice = document.getElementById('property-price').value;
+                propertylandArea = document.getElementById('property-land-area').value;
+                propertyUnit = document.getElementById('property-unit').value;
+                propertyExpireDate = document.getElementById('property-expiry-date').value;
                 return true;
             }
             if (newIndex === 4) {
@@ -169,10 +178,20 @@
                         document.getElementById('room-validate').style.display = 'none';
                         document.getElementById('elevator-validate').style.display = 'none';
                         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                        bedroomFeature = document.getElementById('bedroom-feature').value;
+                        bathroomFeature = document.getElementById('bathroom-feature').value;
+                        kitchenFeature = document.getElementById('kitchen-feature').value;
+                        storeRoomFeature = document.getElementById('store-room-feature').value;
+                        homeParkingSpaceFeature = document.getElementById('home-parking-space-feature').value;
                         return false;
                     }
 
                 } else if (propertyType === 'plot') {
+                    cornerFeature = document.getElementById('corner-feature').checked;
+                    parkFacingFeature = document.getElementById('park-facing-feature').checked;
+                    electricityFeature = document.getElementById('electricity-feature').checked;
+                    waterSupplyFeature = document.getElementById('water-supply-feature').checked;
+                    suiGasFeature = document.getElementById('sui-gas-feature').checked;
                     return true;
                 } else {
                     if (document.getElementById('builtin-year-feature').value === '' || document.getElementById('builtin-year-feature').value === undefined) {
@@ -282,6 +301,11 @@
                 document.getElementById('floor-validate').style.display = 'none';
                 document.getElementById('elevator-validate').style.display = 'none';
                 document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                builtinYearFeature = document.getElementById('builtin-year-feature').value;
+                roomFeature = document.getElementById('room-feature').value;
+                floorFeature = document.getElementById('floor-feature').value;
+                elevatorFeature = document.getElementById('elevator-feature').value;
+                commercialParkingSpaceFeature = document.getElementById('commercial-parking-space-feature').value;
                 return true;
             }
 
@@ -328,6 +352,9 @@
             document.getElementById('contact-email-validate').style.display = 'none';
             document.getElementById('contact-email-format-validate').style.display = 'none';
             document.getElementById('contact-mobile-validate').style.display = 'none';
+            contactName = document.getElementById('contact-name').value;
+            contactEmail = document.getElementById('contact-email').value;
+            contactMobile = document.getElementById('contact-mobile').value;
             saveProperty();
         },
         // onInit : function (event, currentIndex) {
