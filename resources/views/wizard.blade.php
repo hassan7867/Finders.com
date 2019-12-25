@@ -140,7 +140,7 @@
                 <span class="title_text">Property Location</span>
             </h3>
             <fieldset>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 3px;">
                     <label>Country :</label>
                     <select onchange="getCities()" id="select-country" class="form-control w-25" style="margin-left: 0.1rem!important;" name="city">
                         <option value="-1">Select country</option>
@@ -148,17 +148,25 @@
                         <option value="AE">United Arab Emirates</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="country-validate">
+                    <li>Country is required</li>
+                </div>
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>City :</label>
                     <select onchange="selectCity()" id="select-city" type="text" class="form-control w-25" style="margin-left: 1.8rem!important;" name="city">
                         <option value="-1">Select city</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="city-validate">
+                    <li>City is required</li>
+                </div>
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>Location :</label>
                     <input onkeypress="selectLocation()" class="form-control w-25" id="select-location" name="location" type="text">
                 </div>
-
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="location-validate">
+                    <li>Location is required</li>
+                </div>
                 <div class="fieldset-footer">
                     <span>Step 2 of 6</span>
                 </div>
@@ -168,20 +176,29 @@
             </h3>
             <fieldset>
 
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 3px;">
                     <label>Property Title :</label>
                     <input class="form-control w-25" id="property-title" name="propertyTitle" type="text">
                 </div>
-                <div class="form-group">
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-title-validate">
+                    <li>Property Title is required</li>
+                </div>
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>Description :</label>
                     <textarea class="form-control w-25" style="resize: none; margin-left: 1.0rem!important" id="property-description" rows="2" cols="25"
                               name="description"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-description-validate">
+                    <li>Description is required</li>
+                </div>
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>Price :</label>
                     <input class="form-control w-25" id="property-price" name="price" type="number" style="margin-left: 3.6rem!important;">
                 </div>
-                <div class="form-group">
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-price-validate">
+                    <li>Price is required</li>
+                </div>
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>Land Area :</label>
                     <div class="row">
                         <input class="form-control w-25 ml-3" id="property-land-area" name="landArea" type="number" style="margin-left: 2.4rem!important;">
@@ -195,6 +212,9 @@
                             <option value="kanal">Kanal</option>
                         </select>
                     </div>
+                </div>
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-land-area-validate">
+                    <li>Land Area and Unit is required</li>
                 </div>
                 <div class="form-group" id="bedroomField" style="display: none">
                     <label>Bedrooms :</label>
@@ -228,7 +248,7 @@
                         <option value="10 bathrooms">10</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>Expire after :</label>
                     <select type="text" class="form-control w-25" id="property-expiry-date" name="expiryDate" style="margin-left: 0.8rem!important;">
                         <option value="">--Please Select--</option>
@@ -236,6 +256,9 @@
                         <option value="1 year">3 months</option>
                         <option value="2 year">6 months</option>
                     </select>
+                </div>
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="property-expiry-after-validate">
+                    <li>Required</li>
                 </div>
 
                 <div class="fieldset-footer">
@@ -248,71 +271,116 @@
             <fieldset>
 
                 <div style="display: block;" id="home-features">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 3px;">
                         <label>Bedrooms :</label>
                         <input class="form-control w-25" id="bedroom-feature" name="location" type="number" style="margin-left: 1.6rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="bedroom-validate">
+                        <li>Bedroom is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Bathrooms :</label>
                         <input class="form-control w-25" id="bathroom-feature" name="location" type="number" style="margin-left: 1.3rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="bathroom-validate">
+                        <li>Bathroom is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Kitchens :</label>
                         <input class="form-control w-25" id="kitchen-feature" name="location" type="number" style="margin-left: 2.1rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="kitchen-validate">
+                        <li>Kitchen is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Store Rooms :</label>
                         <input class="form-control w-25" id="store-room-feature" name="location" type="number" style="margin-left: 0.6rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="store-room-validate">
+                        <li>Store Room is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Parking Spaces :</label>
                         <input class="form-control w-25" id="home-parking-space-feature" name="location" type="number" style="margin-left: -0.5rem!important">
+                    </div>
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="home-parking-space-validate">
+                        <li>Parking Space is required</li>
                     </div>
                 </div>
 
                 <div style="display: none;" id="plot-features">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 3px;">
                         <label>Corner :</label>
                         <input id="corner-feature" name="location" type="checkbox" style="margin-left: 2.5rem!important; width: 50px!important;">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="corner-validate">
+                        <li>Corner is equired</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Park Facing :</label>
                         <input id="park-facing-feature" name="location" type="checkbox" style="margin-left: 0.3rem!important; width: 50px!important;">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="park-facing-validate">
+                        <li>Park Facing is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Electricity :</label>
                         <input id="electricity-feature" name="location" type="checkbox" style="margin-left: 0.9rem!important; width: 50px!important;">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="electricity-validate">
+                        <li>Electricity is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Water Supply :</label>
                         <input id="water-supply-feature" name="checkbox" type="checkbox" style="margin-left: -0.4rem!important; width: 50px!important;">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="water-supply-validate">
+                        <li>Water Supply is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Sui Gas :</label>
                         <input id="sui-gas-feature" name="location" type="checkbox" style="margin-left: 2.0rem!important; width: 50px!important;">
+                    </div>
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="sui-gas-validate">
+                        <li>Sui Gas is required</li>
                     </div>
                 </div>
 
                 <div style="display: none;" id="commercial-features">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 3px;">
                         <label>Built in Year :</label>
                         <input class="form-control w-25" id="builtin-year-feature" name="location" type="number" style="margin-left: 0.5rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="builtin-year-validate">
+                        <li>Builtin Year is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Rooms :</label>
                         <input class="form-control w-25" id="room-feature" name="location" type="number" style="margin-left: 2.9rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="room-validate">
+                        <li>Room is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Floors :</label>
                         <input class="form-control w-25" id="floor-feature" name="location" type="number" style="margin-left: 3.2rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="floor-validate">
+                        <li>Floor is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Elevators :</label>
                         <input class="form-control w-25" id="elevator-feature" name="location" type="number" style="margin-left: 2.0rem!important">
                     </div>
-                    <div class="form-group">
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="elevator-validate">
+                        <li>Elevator is required</li>
+                    </div>
+                    <div class="form-group mt-4" style="margin-bottom: 3px;">
                         <label>Parking Spaces :</label>
                         <input class="form-control w-25" id="commercial-parking-space-feature" name="location" type="number" style="margin-left: -0.5rem!important">
+                    </div>
+                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="commercial-parking-space-validate">
+                        <li>Parking Space is required</li>
                     </div>
                 </div>
 
@@ -338,17 +406,29 @@
             </h3>
             <fieldset>
 
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 3px;">
                     <label>Name :</label>
                     <input class="form-control w-25" id="contact-name" name="location" type="text" style="margin-left: 0.6rem!important">
                 </div>
-                <div class="form-group">
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-name-validate">
+                    <li>Name is required</li>
+                </div>
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>Email :</label>
                     <input class="form-control w-25" id="contact-email" name="location" type="email" style="margin-left: 0.6rem!important">
                 </div>
-                <div class="form-group">
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-email-validate">
+                    <li>Email is required</li>
+                </div>
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-email-format-validate">
+                    <li>Email format is not valid</li>
+                </div>
+                <div class="form-group mt-4" style="margin-bottom: 3px;">
                     <label>Mobile :</label>
                     <input class="form-control w-25" id="contact-mobile" name="location" type="text" style="margin-left: 0.2rem!important">
+                </div>
+                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-mobile-validate">
+                    <li>Mobile is required</li>
                 </div>
 
                 <div class="fieldset-footer">
