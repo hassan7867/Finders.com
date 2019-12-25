@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CommercialFeature;
+use App\HomeFeature;
+use App\PlotFeature;
 use App\Property;
 use App\PropertyAttachment;
 use Illuminate\Http\Request;
@@ -17,7 +20,16 @@ class HomeController extends Controller
     {
         $properties = Property::all();
         for ($i = 0; $i < count($properties); $i++) {
-            $properties[$i]['main_image'] = PropertyAttachment::where('id_property', $properties[$i]->id_property)->first()['image_path'];
+            $properties[$i]['main_image'] = PropertyAttachment::where('id_property', $properties[$i]->id)->first()['image_path'];
+            if($properties[$i]['property_type'] == 'home'){
+                $properties[$i]['home_features'] = HomeFeature::where('id_property', $properties[$i]->id)->first();
+            }
+            if($properties[$i]['property_type'] == 'plot'){
+                $properties[$i]['plot_features'] = PlotFeature::where('id_property', $properties[$i]->id)->first();
+            }
+            if($properties[$i]['property_type'] == 'commercial'){
+                $properties[$i]['commercial_features'] = CommercialFeature::where('id_property', $properties[$i]->id)->first();
+            }
         }
         return view('welcome')->with(['properties' => $properties]);
     }

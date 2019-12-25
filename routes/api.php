@@ -20,5 +20,6 @@ Route::post('email/send','SendEmailController@sendEmail');
 Route::post('cities/get','HomeController@getCities');
 Route::get('wizard','HomeController@getWizard');
 Route::get('property/{propertyId}/contact/get','PropertyController@getContact');
+Route::post('property/filter','PropertyController@filterProperties');
 Route::resource('property','PropertyController');
-//Route::get('top','HomeController@getTop');
+Route::get('property/image/get','PropertyController@getImage');

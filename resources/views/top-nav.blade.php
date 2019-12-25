@@ -41,13 +41,13 @@
                 <a class="nav-link nav-text-custom" href="#" id="about-us">About Us</a>
             </li>
             <li class="nav-item ml-3" onclick="changeNavLink('contact-us')">
-                <a class="nav-link nav-text-custom" href="{{url('/wizard')}}" id="contact-us">Contact Us</a>
+                <a class="nav-link nav-text-custom" href="#" id="contact-us">Contact Us</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="mr-sm-2 top-search-bar" type="search" placeholder="Enter Property ID" aria-label="Search">
-            <button class="btn btn-outline my-2 my-sm-0" style="background: white; font-size: 12px" type="submit">Find</button>
-        </form>
+        {{--<form class="form-inline my-2 my-lg-0">--}}
+            {{--<input class="mr-sm-2 top-search-bar" type="search" placeholder="Enter Property ID" aria-label="Search">--}}
+            {{--<button class="btn btn-outline my-2 my-sm-0" style="background: white; font-size: 12px" type="submit">Find</button>--}}
+        {{--</form>--}}
     </div>
 </nav>
 
