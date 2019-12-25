@@ -691,48 +691,48 @@
     let currentStep = 0;
     function stepForward(){
         currentStep++;
-
-        if(currentStep === 2){
-            country = document.getElementById('select-country').value;
-            city = document.getElementById('select-city').value;
-            placelocation = document.getElementById('select-location').value;
-        }
-        if(currentStep === 3)
-        {
-            propertyTitle = document.getElementById('property-title').value;
-            propertyDescription = document.getElementById('property-description').value;
-            propertyPrice = document.getElementById('property-price').value;
-            propertylandArea = document.getElementById('property-land-area').value;
-            propertyUnit = document.getElementById('property-unit').value;
-            propertyExpireDate = document.getElementById('property-expiry-date').value;
-        }
-        if(currentStep === 4){
-            bedroomFeature = document.getElementById('bedroom-feature').value;
-            bathroomFeature = document.getElementById('bathroom-feature').value;
-            kitchenFeature = document.getElementById('kitchen-feature').value;
-            storeRoomFeature = document.getElementById('store-room-feature').value;
-            homeParkingSpaceFeature = document.getElementById('home-parking-space-feature').value;
-
-            cornerFeature = document.getElementById('corner-feature').checked;
-            parkFacingFeature = document.getElementById('park-facing-feature').checked;
-            electricityFeature = document.getElementById('electricity-feature').checked;
-            waterSupplyFeature = document.getElementById('water-supply-feature').checked;
-            suiGasFeature = document.getElementById('sui-gas-feature').checked;
-
-            builtinYearFeature = document.getElementById('builtin-year-feature').value;
-            roomFeature = document.getElementById('room-feature').value;
-            floorFeature = document.getElementById('floor-feature').value;
-            elevatorFeature = document.getElementById('elevator-feature').value;
-            commercialParkingSpaceFeature = document.getElementById('commercial-parking-space-feature').value;
-        }
-        if(currentStep === 5){
-            files = document.getElementById("property-file").files;
-        }
-        if(currentStep === 6){
-            contactName = document.getElementById('contact-name').value;
-            contactEmail = document.getElementById('contact-email').value;
-            contactMobile = document.getElementById('contact-mobile').value;
-        }
+        //
+        // if(currentStep === 2){
+        //     country = document.getElementById('select-country').value;
+        //     city = document.getElementById('select-city').value;
+        //     placelocation = document.getElementById('select-location').value;
+        // }
+        // if(currentStep === 3)
+        // {
+        //     propertyTitle = document.getElementById('property-title').value;
+        //     propertyDescription = document.getElementById('property-description').value;
+        //     propertyPrice = document.getElementById('property-price').value;
+        //     propertylandArea = document.getElementById('property-land-area').value;
+        //     propertyUnit = document.getElementById('property-unit').value;
+        //     propertyExpireDate = document.getElementById('property-expiry-date').value;
+        // }
+        // if(currentStep === 4){
+        //     bedroomFeature = document.getElementById('bedroom-feature').value;
+        //     bathroomFeature = document.getElementById('bathroom-feature').value;
+        //     kitchenFeature = document.getElementById('kitchen-feature').value;
+        //     storeRoomFeature = document.getElementById('store-room-feature').value;
+        //     homeParkingSpaceFeature = document.getElementById('home-parking-space-feature').value;
+        //
+        //     cornerFeature = document.getElementById('corner-feature').checked;
+        //     parkFacingFeature = document.getElementById('park-facing-feature').checked;
+        //     electricityFeature = document.getElementById('electricity-feature').checked;
+        //     waterSupplyFeature = document.getElementById('water-supply-feature').checked;
+        //     suiGasFeature = document.getElementById('sui-gas-feature').checked;
+        //
+        //     builtinYearFeature = document.getElementById('builtin-year-feature').value;
+        //     roomFeature = document.getElementById('room-feature').value;
+        //     floorFeature = document.getElementById('floor-feature').value;
+        //     elevatorFeature = document.getElementById('elevator-feature').value;
+        //     commercialParkingSpaceFeature = document.getElementById('commercial-parking-space-feature').value;
+        // }
+        // if(currentStep === 5){
+        //     files = document.getElementById("property-file").files;
+        // }
+        // if(currentStep === 6){
+        //     contactName = document.getElementById('contact-name').value;
+        //     contactEmail = document.getElementById('contact-email').value;
+        //     contactMobile = document.getElementById('contact-mobile').value;
+        // }
     }
 
     function stepBackward() {
@@ -786,7 +786,7 @@
                 //res = JSON.parse(res);
                 successNotification('Property Saved Successfully');
                 setTimeout(function () {
-                    window.location.reload();
+                    window.location.href = "http://finders.com";
                 }, 2000);
             }
         });

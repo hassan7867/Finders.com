@@ -133,16 +133,18 @@ body {
   position: relative;
   margin: 0 auto;
   background: #fff;
-  box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);
-  -o-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);
-  -ms-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  -ms-border-radius: 10px;
+  border-top: 3px solid #002F34;
+  border-bottom: 3px solid #002F34;
+  /*box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);*/
+  /*-moz-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);*/
+  /*-webkit-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);*/
+  /*-o-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);*/
+  /*-ms-box-shadow: 0px 5px 9.5px 0.5px rgba(0, 0, 0, 0.1);*/
+  border-radius: 2px;
+  /*-moz-border-radius: 10px;*/
+  /*-webkit-border-radius: 10px;*/
+  /*-o-border-radius: 10px;*/
+  /*-ms-border-radius: 10px;*/
 }
 
 .signup-form {
