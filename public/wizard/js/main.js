@@ -88,193 +88,195 @@
                 propertyTitle = document.getElementById('property-title').value;
                 propertyDescription = document.getElementById('property-description').value;
                 propertyPrice = document.getElementById('property-price').value;
+                propertyPriceUnit = document.getElementById('price-unit').value;
+                propertyPriceCurrency = document.getElementById('price-currency').value;
                 propertylandArea = document.getElementById('property-land-area').value;
                 propertyUnit = document.getElementById('property-unit').value;
                 propertyExpireDate = document.getElementById('property-expiry-date').value;
                 return true;
             }
             if (newIndex === 4) {
-                if (propertyType === 'home') {
-                    if (document.getElementById('bedroom-feature').value === '' || document.getElementById('bedroom-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'block';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('bathroom-feature').value === '' || document.getElementById('bathroom-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'block';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('kitchen-feature').value === '' || document.getElementById('kitchen-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'block';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('store-room-feature').value === '' || document.getElementById('store-room-feature').value === undefined || document.getElementById('property-unit').value === '' || document.getElementById('property-unit').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'block';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('home-parking-space-feature').value === '' || document.getElementById('home-parking-space-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'block';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-
-                } else if (propertyType === 'plot') {
-                    return true;
-                } else {
-                    if (document.getElementById('builtin-year-feature').value === '' || document.getElementById('builtin-year-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'block';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('floor-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('room-feature').value === '' || document.getElementById('room-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'block';
-                        document.getElementById('floor-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('floor-feature').value === '' || document.getElementById('floor-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('floor-validate').style.display = 'block';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('elevator-feature').value === '' || document.getElementById('elevator-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('floor-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'block';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'none';
-                        return false;
-                    }
-                    if (document.getElementById('commercial-parking-space-feature').value === '' || document.getElementById('commercial-parking-space-feature').value === undefined) {
-                        document.getElementById('bedroom-validate').style.display = 'none';
-                        document.getElementById('bathroom-validate').style.display = 'none';
-                        document.getElementById('kitchen-validate').style.display = 'none';
-                        document.getElementById('store-room-validate').style.display = 'none';
-                        document.getElementById('home-parking-space-validate').style.display = 'none';
-                        document.getElementById('corner-validate').style.display = 'none';
-                        document.getElementById('park-facing-validate').style.display = 'none';
-                        document.getElementById('electricity-validate').style.display = 'none';
-                        document.getElementById('water-supply-validate').style.display = 'none';
-                        document.getElementById('sui-gas-validate').style.display = 'none';
-                        document.getElementById('builtin-year-validate').style.display = 'none';
-                        document.getElementById('room-validate').style.display = 'none';
-                        document.getElementById('floor-validate').style.display = 'none';
-                        document.getElementById('elevator-validate').style.display = 'none';
-                        document.getElementById('commercial-parking-space-validate').style.display = 'block';
-                        return false;
-                    }
-                }
+                // if (propertyType === 'home') {
+                //     if (document.getElementById('bedroom-feature').value === '' || document.getElementById('bedroom-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'block';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('bathroom-feature').value === '' || document.getElementById('bathroom-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'block';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('kitchen-feature').value === '' || document.getElementById('kitchen-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'block';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('store-room-feature').value === '' || document.getElementById('store-room-feature').value === undefined || document.getElementById('property-unit').value === '' || document.getElementById('property-unit').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'block';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('home-parking-space-feature').value === '' || document.getElementById('home-parking-space-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'block';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //
+                // } else if (propertyType === 'plot') {
+                //     return true;
+                // } else {
+                //     if (document.getElementById('builtin-year-feature').value === '' || document.getElementById('builtin-year-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'block';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('floor-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('room-feature').value === '' || document.getElementById('room-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'block';
+                //         document.getElementById('floor-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('floor-feature').value === '' || document.getElementById('floor-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('floor-validate').style.display = 'block';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('elevator-feature').value === '' || document.getElementById('elevator-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('floor-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'block';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'none';
+                //         return false;
+                //     }
+                //     if (document.getElementById('commercial-parking-space-feature').value === '' || document.getElementById('commercial-parking-space-feature').value === undefined) {
+                //         document.getElementById('bedroom-validate').style.display = 'none';
+                //         document.getElementById('bathroom-validate').style.display = 'none';
+                //         document.getElementById('kitchen-validate').style.display = 'none';
+                //         document.getElementById('store-room-validate').style.display = 'none';
+                //         document.getElementById('home-parking-space-validate').style.display = 'none';
+                //         document.getElementById('corner-validate').style.display = 'none';
+                //         document.getElementById('park-facing-validate').style.display = 'none';
+                //         document.getElementById('electricity-validate').style.display = 'none';
+                //         document.getElementById('water-supply-validate').style.display = 'none';
+                //         document.getElementById('sui-gas-validate').style.display = 'none';
+                //         document.getElementById('builtin-year-validate').style.display = 'none';
+                //         document.getElementById('room-validate').style.display = 'none';
+                //         document.getElementById('floor-validate').style.display = 'none';
+                //         document.getElementById('elevator-validate').style.display = 'none';
+                //         document.getElementById('commercial-parking-space-validate').style.display = 'block';
+                //         return false;
+                //     }
+                // }
 
                 document.getElementById('bedroom-validate').style.display = 'none';
                 document.getElementById('bathroom-validate').style.display = 'none';
