@@ -25,6 +25,8 @@ class CreatePropertiesTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('price');
+            $table->string('price_unit');
+            $table->string('price_currency');
             $table->string('land_area');
             $table->string('unit');
             $table->string('expires_after')->nullable();
