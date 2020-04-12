@@ -20,6 +20,7 @@ class PropertyController extends Controller
      */
     public function index($purpose, $country, $city, $location)
     {
+        $videoFiles = ['WEBM', 'MPG', 'MP2', 'MPEG', 'MPE', 'MPV', 'OGG', 'MP4', 'M4P', 'M4V', 'AVI', 'WMV', 'MOV', 'QT'];
         $properties = Property::where('id', '>', 0);
         if ($purpose != 'all') {
             $properties->where('purpose', '=', $purpose);
@@ -35,7 +36,15 @@ class PropertyController extends Controller
         }
         $properties = $properties->get();
         for ($i = 0; $i < count($properties); $i++) {
-            $properties[$i]['main_image'] = PropertyAttachment::where('id_property', $properties[$i]->id)->first()['image_path'];
+            $path = PropertyAttachment::where('id_property', $properties[$i]->id)->first()['image_path'];
+            if (!empty($path)) {
+                $extension = explode('.', $path)[1];
+                if (in_array(strtoupper($extension), $videoFiles)) {
+                    $properties[$i]['main_video'] = $path;
+                } else {
+                    $properties[$i]['main_image'] = $path;
+                }
+            }
             if ($properties[$i]['property_type'] == 'home') {
                 $properties[$i]['home_features'] = HomeFeature::where('id_property', $properties[$i]->id)->first();
             }
@@ -46,7 +55,7 @@ class PropertyController extends Controller
                 $properties[$i]['commercial_features'] = CommercialFeature::where('id_property', $properties[$i]->id)->first();
             }
         }
-        return view('welcome')->with(['properties' => $properties]);
+        return view('filtered-properties')->with(['properties' => $properties]);
     }
 
     /**
@@ -78,6 +87,8 @@ class PropertyController extends Controller
         $property->title = $request->propertyTitle;
         $property->description = $request->propertyDescription;
         $property->price = $request->propertyPrice;
+        $property->price_unit = $request->propertyPriceUnit;
+        $property->price_currency = $request->propertyPriceCurrency;
         $property->land_area = $request->propertyLandArea;
         $property->unit = $request->propertyUnit;
         $property->expires_after = $request->propertyExpireDate;
@@ -86,6 +97,21 @@ class PropertyController extends Controller
 
         if ($request->propertyType == 'home') {
             $homeFeatures = new HomeFeature();
+            if (empty($request->bedroomFeature)) {
+                $request->bedroomFeature = -1;
+            }
+            if (empty($request->bathroomFeature)) {
+                $request->bathroomFeature = -1;
+            }
+            if (empty($request->kitchenFeature)) {
+                $request->kitchenFeature = -1;
+            }
+            if (empty($request->storeRoomFeature)) {
+                $request->storeRoomFeature = -1;
+            }
+            if (empty($request->homeParkingSpaceFeature)) {
+                $request->homeParkingSpaceFeature = -1;
+            }
             $homeFeatures->bedrooms = $request->bedroomFeature;
             $homeFeatures->bathrooms = $request->bathroomFeature;
             $homeFeatures->kitchens = $request->kitchenFeature;
@@ -104,6 +130,21 @@ class PropertyController extends Controller
             $plotFeatures->save();
 
         } else if ($request->propertyType == 'commercial') {
+            if (empty($request->builtinYearFeature)) {
+                $request->builtinYearFeature = -1;
+            }
+            if (empty($request->roomFeature)) {
+                $request->roomFeature = -1;
+            }
+            if (empty($request->floorFeature)) {
+                $request->floorFeature = -1;
+            }
+            if (empty($request->elevatorFeature)) {
+                $request->elevatorFeature = -1;
+            }
+            if (empty($request->commercialParkingSpaceFeature)) {
+                $request->commercialParkingSpaceFeature = -1;
+            }
             $commercialFeature = new CommercialFeature();
             $commercialFeature->id_property = $property->id;
             $commercialFeature->built_in_year = $request->builtinYearFeature;
@@ -189,20 +230,33 @@ class PropertyController extends Controller
     public function details($propertyId)
     {
         $properties = Property::where('id', $propertyId)->first();
-            $properties['images'] = PropertyAttachment::where('id_property', $properties->id)->get();
-            if($properties['property_type'] == 'home'){
-                $properties['home_features'] = HomeFeature::where('id_property', $properties->id)->first();
+        $videoFiles = ['WEBM', 'MPG', 'MP2', 'MPEG', 'MPE', 'MPV', 'OGG', 'MP4', 'M4P', 'M4V', 'AVI', 'WMV', 'MOV', 'QT'];
+        $properties['images'] = PropertyAttachment::where('id_property', $properties->id)->get();
+        foreach ($properties['images'] as $img) {
+            $path = $img->image_path;
+            if (!empty($path)) {
+                $extension = explode('.', $path)[1];
+                if (in_array(strtoupper($extension), $videoFiles)) {
+                    $img->type = 'video';
+                } else {
+                    $img->type = 'img';
+                }
             }
-            if($properties['property_type'] == 'plot'){
-                $properties['plot_features'] = PlotFeature::where('id_property', $properties->id)->first();
-            }
-            if($properties['property_type'] == 'commercial'){
-                $properties['commercial_features'] = CommercialFeature::where('id_property', $properties->id)->first();
-            }
+        }
+        if ($properties['property_type'] == 'home') {
+            $properties['home_features'] = HomeFeature::where('id_property', $properties->id)->first();
+        }
+        if ($properties['property_type'] == 'plot') {
+            $properties['plot_features'] = PlotFeature::where('id_property', $properties->id)->first();
+        }
+        if ($properties['property_type'] == 'commercial') {
+            $properties['commercial_features'] = CommercialFeature::where('id_property', $properties->id)->first();
+        }
         return view('property-details')->with(['properties' => $properties]);
     }
 
-    public function getImage(Request $request){
+    public function getImage(Request $request)
+    {
         $file = base_path("data/") . $request->attachment;
         $type = mime_content_type($file);
         header('Content-Type:' . $type);
