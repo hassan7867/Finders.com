@@ -39,13 +39,17 @@
     }
 </style>
 <head>
-    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
-    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.main.js') }}" ></script>
+    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('theme-styles/js/jquery-3.3.1.min.js')}}"></script>
+    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('theme-styles/styles/bootstrap-4.1.2/popper.js') }}"></script>
+    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('theme-styles/styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
+
+    {{--<script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>--}}
+{{--    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.main.js') }}" ></script>--}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="colorlib.com">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form</title>
+    <title>Add New Property</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="{{ asset('wizard/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
@@ -56,30 +60,31 @@
 
 </head>
 
-<body>
-
+<body onload="islogin();">
+<div style="height: 120px"></div>
 <div class="main" style="padding-top: 20px">
     <div class="container-custom" style="width: 96% !important; padding: 5px !important;">
-        <h2 style="margin-bottom:20px">Add a New Property </h2>
+        <h2>Add a New Property </h2>
+        <h3 class="mb-2 text-center mt-2 font-weight-bold">Step by Step Guide </h3>
         <div id="signup-form" class="signup-form">
             <h3>
                 <span class="title_text">Property Type</span>
             </h3>
             <fieldset>
                 <div style="border-bottom: 1px solid #ebebeb;">
-                    <div class="form-group">
+                    <div class="form-group" style="display: block">
                             <div>
-                            <b style="font-size: medium">Purpose</b><br>
-                            <div class="row mt-3 ml-2">
+                            <b style="font-size: medium;">Purpose</b>
+                            <div class="row mt-3">
                                 <button class="selected-button" onclick="selectPurpose('buy')" id="buy-purpose" value="forSale">For Sale</button>
                                 <button class="un-selected-button ml-2" onclick="selectPurpose('rent')" id="rent-purpose" value="forRent">Rent</button>
                             </div>
-                        </div>
+                            </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display: block">
                         <div>
                             <b style="font-size: medium">Property Type</b><br>
-                            <div class="row mt-3 ml-2">
+                            <div class="row mt-3">
                                 <button class="selected-button" onclick="selectPropertyType('home')" id="home-type">Home</button>
                                 <button class="un-selected-button ml-2" onclick="selectPropertyType('plots')" id="plots-type">Plots</button>
                                 <button class="un-selected-button ml-2" onclick="selectPropertyType('commercial')" id="commercial-type">Commercial</button>
@@ -88,47 +93,113 @@
                     </div>
                     <div class="form-group" id="propertyTypeHome" style="display: block">
                         <div>
-                            <div class="row ml-5">
-                                <button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypeHome('house')" id="type-house">House</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('flat')" id="type-flat">Flat</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('upper-portion')" id="type-upper-portion">Upper Portion</button>
-                            </div>
-                            <div class="row ml-5 mt-1">
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('lower-portion')" id="type-lower-portion">Lower portion</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('farm-house')" id="type-farm-house">Farm House</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('room')" id="type-room">Room</button>
-                            </div>
-                            <div class="row ml-5 mt-1">
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('pent-house')" id="type-pent-house" value="forSale">Pent House</button>
-                            </div>
+                            <ul>
+                                <li>
+                                    <button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypeHome('house')" id="type-house">House</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('flat')" id="type-flat">Flat</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('upper-portion')" id="type-upper-portion">Upper Portion</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('lower-portion')" id="type-lower-portion">Lower portion</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('farm-house')" id="type-farm-house">Farm House</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('room')" id="type-room">Room</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('pent-house')" id="type-pent-house" value="forSale">Pent House</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('bed-space')" id="type-bed-space" value="forSale">Bed Space</button>
+                                </li>
+                            </ul>
+                            {{--<div class="row  ml-0">--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypeHome('house')" id="type-house">House</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('flat')" id="type-flat">Flat</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('upper-portion')" id="type-upper-portion">Upper Portion</button>--}}
+                            {{--</div>--}}
+                            {{--<div class="row mt-1  ml-0">--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('lower-portion')" id="type-lower-portion">Lower portion</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('farm-house')" id="type-farm-house">Farm House</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeHome('room')" id="type-room">Room</button>--}}
+                            {{--</div>--}}
+                            {{--<div class="row mt-1  ml-0">--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeHome('pent-house')" id="type-pent-house" value="forSale">Pent House</button>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                     <div class="form-group" id="propertyTypePlot" style="display: none">
                         <div>
-                            <div class="row ml-5">
-                                <button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypePlot('residential-plot')" id="type-residential-plot">Residential Plot</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('commercial-plot')" id="type-commercial-plot">Commercial Plot</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('agricultural-land')" id="type-agricultural-land">Agricultural Land</button>
-                            </div>
-                            <div class="row ml-5 mt-1">
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypePlot('industrial-land')" id="type-industrial-land">Industrial Land</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('plot-file')" id="type-plot-file">Plot File</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('plot-farm')" id="type-plot-farm">Plot Farm</button>
-                            </div>
+                            <ul>
+                                <li>
+                                    <button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypePlot('residential-plot')" id="type-residential-plot">Residential Plot</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypePlot('commercial-plot')" id="type-commercial-plot">Commercial Plot</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypePlot('agricultural-land')" id="type-agricultural-land">Agricultural Land</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypePlot('industrial-land')" id="type-industrial-land">Industrial Land</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypePlot('plot-file')" id="type-plot-file">Plot File</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypePlot('plot-farm')" id="type-plot-farm">Plot Farm</button>
+                                </li>
+                            </ul>
+                            {{--<div class="row  ml-0">--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypePlot('residential-plot')" id="type-residential-plot">Residential Plot</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('commercial-plot')" id="type-commercial-plot">Commercial Plot</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('agricultural-land')" id="type-agricultural-land">Agricultural Land</button>--}}
+                            {{--</div>--}}
+                            {{--<div class="row mt-1  ml-0">--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypePlot('industrial-land')" id="type-industrial-land">Industrial Land</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('plot-file')" id="type-plot-file">Plot File</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypePlot('plot-farm')" id="type-plot-farm">Plot Farm</button>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                     <div class="form-group" id="propertyTypeCommercial" style="display: none">
                         <div>
-                            <div class="row ml-5">
-                                <button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypeCommercial('office')" id="type-office">Office</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('shop')" id="type-shop">Shop</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('warehouse')" id="type-warehouse">Warehouse</button>
-                            </div>
-                            <div class="row ml-5 mt-1">
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeCommercial('factory')" id="type-factory">Factory</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('building')" id="type-building">Building</button>
-                                <button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('others')" id="type-others">Others</button>
-                            </div>
+                            <ul>
+                                <li>
+                                    <button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypeCommercial('office')" id="type-office">Office</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeCommercial('shop')" id="type-shop">Shop</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeCommercial('warehouse')" id="type-warehouse">Warehouse</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeCommercial('factory')" id="type-factory">Factory</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeCommercial('building')" id="type-building">Building</button>
+                                </li>
+                                <li class="mt-1">
+                                    <button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeCommercial('others')" id="type-others">Others</button>
+                                </li>
+                            </ul>
+                            {{--<div class="row  ml-0">--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="selected-button" onclick="propertyTypeCommercial('office')" id="type-office">Office</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('shop')" id="type-shop">Shop</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('warehouse')" id="type-warehouse">Warehouse</button>--}}
+                            {{--</div>--}}
+                            {{--<div class="row mt-1  ml-0">--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button" onclick="propertyTypeCommercial('factory')" id="type-factory">Factory</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('building')" id="type-building">Building</button>--}}
+                                {{--<button style="padding: 1px!important;font-size: small" class="un-selected-button ml-2" onclick="propertyTypeCommercial('others')" id="type-others">Others</button>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>
@@ -140,31 +211,34 @@
                 <span class="title_text">Property Location</span>
             </h3>
             <fieldset>
-                <div class="form-group" style="margin-bottom: 3px;">
+                <div class="form-group" style="margin-bottom: 3px;display: block" >
                     <label>Country :</label>
-                    <select onchange="getCities()" id="select-country" class="form-control w-25" style="margin-left: 0.1rem!important;" name="city">
+                    <select onchange="getCities()" id="select-country" class="form-control col-md-4" name="city">
                         <option value="-1">Select country</option>
                         <option value="PK">Pakistan</option>
                         <option value="AE">United Arab Emirates</option>
                     </select>
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="country-validate">
+                <div class="text-danger mb-2" style="display: none" id="country-validate">
                     <li>Country is required</li>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+                <div class="form-group mt-4" style="margin-bottom: 3px; display: block;">
                     <label>City :</label>
-                    <select onchange="selectCity()" id="select-city" type="text" class="form-control w-25" style="margin-left: 1.8rem!important;" name="city">
-                        <option value="-1">Select city</option>
-                    </select>
+                    {{--<select onchange="selectCity()" id="select-city" type="text" class="form-control col-md-4" name="city">--}}
+                        {{--<option value="-1">Select city</option>--}}
+                    {{--</select>--}}
+                    <input list="cities-list" onchange="selectCity()" class="form-control col-md-4" id="select-city" name="city" type="text">
+                    <datalist id="cities-list">
+                    </datalist>
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="city-validate">
+                <div class="text-danger mb-2" style="display: none" id="city-validate">
                     <li>City is required</li>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+                <div class="form-group mt-4" style="margin-bottom: 3px; display: block">
                     <label>Location :</label>
-                    <input onkeypress="selectLocation()" class="form-control w-25" id="select-location" name="location" type="text">
+                    <input onkeypress="selectLocation()" class="form-control col-md-4" id="select-location" name="location" type="text">
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="location-validate">
+                <div class="text-danger mb-2" style="display: none" id="location-validate">
                     <li>Location is required</li>
                 </div>
                 <div class="fieldset-footer">
@@ -176,34 +250,48 @@
             </h3>
             <fieldset>
 
-                <div class="form-group" style="margin-bottom: 3px;">
+                <div class="form-group" style="margin-bottom: 3px; display: block" >
                     <label>Property Title :</label>
-                    <input class="form-control w-25" id="property-title" name="propertyTitle" type="text">
+                    <input class="form-control col-md-4" id="property-title" name="propertyTitle" type="text">
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-title-validate">
+                <div class="text-danger mb-2" style="display: none" id="property-title-validate">
                     <li>Property Title is required</li>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+                <div class="form-group mt-4" style="margin-bottom: 3px; display: block;">
                     <label>Description :</label>
-                    <textarea class="form-control w-25" style="resize: none; margin-left: 1.0rem!important" id="property-description" rows="2" cols="25"
+                    <textarea class="form-control col-md-4" id="property-description" rows="2" cols="25"
                               name="description"></textarea>
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-description-validate">
+                <div class="text-danger mb-2" style="display: none" id="property-description-validate">
                     <li>Description is required</li>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+                <div  class="form-group mt-4" style="margin-bottom: 1px; display: block;">
                     <label>Price :</label>
-                    <input class="form-control w-25" id="property-price" name="price" type="number" style="margin-left: 3.6rem!important;">
+                    <div class="d-flex">
+                    <input class="form-control col-md-4" id="property-price" name="price" type="number">
+                    <select type="text" class="form-control col-md-2" id="price-unit" name="priceunit">
+                        <option value=".00">.00</option>
+                        <option value="Thousand">K</option>
+                        <option value="Lacs">Lac</option>
+                        <option value="Million">Million</option>
+                        <option value="Crore">Crore</option>
+                        <option value="Billion">Billion</option>
+                    </select>
+                        <select type="text" class="form-control col-md-2" id="price-currency" name="currency">
+                            <option value="PKR">PKR</option>
+                            <option value="AED">AED</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-price-validate">
+                 <div class="text-danger mb-2" style="display: none;" id="property-price-validate">
                     <li>Price is required</li>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+
+                <div class="form-group mt-4" style="margin-bottom: 3px; display: block">
                     <label>Land Area :</label>
-                    <div class="row">
-                        <input class="form-control w-25 ml-3" id="property-land-area" name="landArea" type="number" style="margin-left: 2.4rem!important;">
-                        <label class="mt-2" style="margin-right: 12px !important;">Unit: </label>
-                        <select type="text" class="form-control ml-2" style="width: 24%!important;" id="property-unit" name="unit">
+                    <div class="d-flex">
+                        <input class="form-control col-md-4" id="property-land-area" name="landArea" type="number">
+                        <select type="text" class="form-control col-md-2" id="property-unit" name="unit">
                             {{--<option value="">--Please Select--</option>--}}
                             <option value="squareFeet">Square Feet</option>
                             <option value="squareyards">Square Yards</option>
@@ -213,12 +301,23 @@
                         </select>
                     </div>
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none" id="property-land-area-validate">
+                {{--<div class="form-group mt-4" style="margin-bottom: 3px; display: block">--}}
+                    {{--<label class="mt-2">Unit: </label>--}}
+                    {{--<select type="text" class="form-control col-md-4" id="property-unit" name="unit">--}}
+                        {{--<option value="">--Please Select--</option>--}}
+                        {{--<option value="squareFeet">Square Feet</option>--}}
+                        {{--<option value="squareyards">Square Yards</option>--}}
+                        {{--<option value="squareMeters">Square Meters</option>--}}
+                        {{--<option value="marla">Marla</option>--}}
+                        {{--<option value="kanal">Kanal</option>--}}
+                    {{--</select>--}}
+                {{--</div>--}}
+                <div class="text-danger mb-2" style="display: none" id="property-land-area-validate">
                     <li>Land Area and Unit is required</li>
                 </div>
-                <div class="form-group" id="bedroomField" style="display: none">
+                <div class="form-group" id="bedroomField" style="display: none;">
                     <label>Bedrooms :</label>
-                    <select type="text" class="form-control w-25" id="bedrooms" name="bedrooms">
+                    <select type="text" class="form-control col-md-4" id="bedrooms" name="bedrooms">
                         <option value="">--Please Select--</option>
                         <option value="1 bedroom">1</option>
                         <option value="2 bedroom">2</option>
@@ -234,7 +333,7 @@
                 </div>
                 <div class="form-group" id="bathroomField" style="display: none">
                     <label>Bathrooms :</label>
-                    <select type="text" class="form-control w-25" id="bathroom" name="bathroom">
+                    <select type="text" class="form-control col-md-4" id="bathroom" name="bathroom">
                         <option value="">--Please Select--</option>
                         <option value="1 bathrooms">1</option>
                         <option value="2 bathrooms">2</option>
@@ -248,16 +347,16 @@
                         <option value="10 bathrooms">10</option>
                     </select>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+                <div class="form-group mt-4" style="margin-bottom: 3px; display: block">
                     <label>Expire after :</label>
-                    <select type="text" class="form-control w-25" id="property-expiry-date" name="expiryDate" style="margin-left: 0.8rem!important;">
+                    <select type="text" class="form-control col-md-4" id="property-expiry-date" name="expiryDate">
                         <option value="">--Please Select--</option>
                         <option value="Less than 1 year">1 month</option>
                         <option value="1 year">3 months</option>
                         <option value="2 year">6 months</option>
                     </select>
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="property-expiry-after-validate">
+                <div class="text-danger mb-2" style="display: none;" id="property-expiry-after-validate">
                     <li>Required</li>
                 </div>
 
@@ -271,75 +370,86 @@
             <fieldset>
 
                 <div style="display: block;" id="home-features">
-                    <div class="form-group" style="margin-bottom: 3px;">
+                    <div class="form-group" style="margin-bottom: 3px;display: block">
                         <label>Bedrooms :</label>
-                        <input class="form-control w-25" id="bedroom-feature" name="location" type="number" style="margin-left: 1.6rem!important">
+                        <input class="form-control col-md-4" id="bedroom-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="bedroom-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="bedroom-validate">
                         <li>Bedroom is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px;display: block">
                         <label>Bathrooms :</label>
-                        <input class="form-control w-25" id="bathroom-feature" name="location" type="number" style="margin-left: 1.3rem!important">
+                        <input class="form-control col-md-4" id="bathroom-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="bathroom-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="bathroom-validate">
                         <li>Bathroom is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px;display: block">
                         <label>Kitchens :</label>
-                        <input class="form-control w-25" id="kitchen-feature" name="location" type="number" style="margin-left: 2.1rem!important">
+                        <input class="form-control col-md-4" id="kitchen-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="kitchen-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="kitchen-validate">
                         <li>Kitchen is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px; display: block">
                         <label>Store Rooms :</label>
-                        <input class="form-control w-25" id="store-room-feature" name="location" type="number" style="margin-left: 0.6rem!important">
+                        <input class="form-control col-md-4" id="store-room-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="store-room-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="store-room-validate">
                         <li>Store Room is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px;display: block">
                         <label>Parking Spaces :</label>
-                        <input class="form-control w-25" id="home-parking-space-feature" name="location" type="number" style="margin-left: -0.5rem!important">
+                        <input class="form-control col-md-4" id="home-parking-space-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="home-parking-space-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="home-parking-space-validate">
                         <li>Parking Space is required</li>
                     </div>
                 </div>
 
                 <div style="display: none;" id="plot-features">
                     <div class="form-group" style="margin-bottom: 3px;">
-                        <label>Corner :</label>
-                        <input id="corner-feature" name="location" type="checkbox" style="margin-left: 2.5rem!important; width: 50px!important;">
+                        <div class="d-flex">
+                            <label style="width: 200px !important;" class="text-left">Corner :</label>
+                            <input id="corner-feature" class="mt-1" name="location" type="checkbox" style="width: 50px!important;">
+                        </div>
                     </div>
                     <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="corner-validate">
                         <li>Corner is equired</li>
                     </div>
                     <div class="form-group mt-4" style="margin-bottom: 3px;">
-                        <label>Park Facing :</label>
-                        <input id="park-facing-feature" name="location" type="checkbox" style="margin-left: 0.3rem!important; width: 50px!important;">
+                        <div class="d-flex">
+                            <label style="width: 200px !important;" class="text-left">Park Facing :</label>
+                            <input id="park-facing-feature" name="location" type="checkbox"
+                                   class="mt-1" style="width: 50px!important;">
+                        </div>
                     </div>
                     <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="park-facing-validate">
                         <li>Park Facing is required</li>
                     </div>
                     <div class="form-group mt-4" style="margin-bottom: 3px;">
-                        <label>Electricity :</label>
-                        <input id="electricity-feature" name="location" type="checkbox" style="margin-left: 0.9rem!important; width: 50px!important;">
+                        <div class="d-flex">
+                        <label style="width: 200px !important;" class="text-left">Electricity :</label>
+                        <input id="electricity-feature" name="location" class="mt-1" type="checkbox" style="width: 50px!important;">
+                        </div>
                     </div>
                     <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="electricity-validate">
                         <li>Electricity is required</li>
                     </div>
                     <div class="form-group mt-4" style="margin-bottom: 3px;">
-                        <label>Water Supply :</label>
-                        <input id="water-supply-feature" name="checkbox" type="checkbox" style="margin-left: -0.4rem!important; width: 50px!important;">
+                        <div class="d-flex">
+                        <label style="width: 200px !important;" class="text-left">Water Supply :</label>
+                        <input id="water-supply-feature" class="mt-1" name="checkbox" type="checkbox" style="width: 50px!important;">
+                        </div>
                     </div>
                     <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="water-supply-validate">
                         <li>Water Supply is required</li>
                     </div>
                     <div class="form-group mt-4" style="margin-bottom: 3px;">
-                        <label>Sui Gas :</label>
-                        <input id="sui-gas-feature" name="location" type="checkbox" style="margin-left: 2.0rem!important; width: 50px!important;">
+                        <div class="d-flex">
+                        <label style="width: 200px !important;" class="text-left">Sui Gas :</label>
+                        <input class="mt-1" id="sui-gas-feature" name="location" type="checkbox" style="width: 50px!important;">
+                        </div>
                     </div>
                     <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="sui-gas-validate">
                         <li>Sui Gas is required</li>
@@ -347,39 +457,39 @@
                 </div>
 
                 <div style="display: none;" id="commercial-features">
-                    <div class="form-group" style="margin-bottom: 3px;">
+                    <div class="form-group" style="margin-bottom: 3px;display: block">
                         <label>Built in Year :</label>
-                        <input class="form-control w-25" id="builtin-year-feature" name="location" type="number" style="margin-left: 0.5rem!important">
+                        <input class="form-control col-md-4" id="builtin-year-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="builtin-year-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="builtin-year-validate">
                         <li>Builtin Year is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px; display: block">
                         <label>Rooms :</label>
-                        <input class="form-control w-25" id="room-feature" name="location" type="number" style="margin-left: 2.9rem!important">
+                        <input class="form-control col-md-4" id="room-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="room-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="room-validate">
                         <li>Room is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px; display: block">
                         <label>Floors :</label>
-                        <input class="form-control w-25" id="floor-feature" name="location" type="number" style="margin-left: 3.2rem!important">
+                        <input class="form-control col-md-4" id="floor-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="floor-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="floor-validate">
                         <li>Floor is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px; display: block">
                         <label>Elevators :</label>
-                        <input class="form-control w-25" id="elevator-feature" name="location" type="number" style="margin-left: 2.0rem!important">
+                        <input class="form-control col-md-4" id="elevator-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="elevator-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="elevator-validate">
                         <li>Elevator is required</li>
                     </div>
-                    <div class="form-group mt-4" style="margin-bottom: 3px;">
+                    <div class="form-group mt-4" style="margin-bottom: 3px;display: block">
                         <label>Parking Spaces :</label>
-                        <input class="form-control w-25" id="commercial-parking-space-feature" name="location" type="number" style="margin-left: -0.5rem!important">
+                        <input class="form-control col-md-4" id="commercial-parking-space-feature" name="location" type="number">
                     </div>
-                    <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="commercial-parking-space-validate">
+                    <div class="text-danger mb-2" style="display: none;" id="commercial-parking-space-validate">
                         <li>Parking Space is required</li>
                     </div>
                 </div>
@@ -389,11 +499,16 @@
                 </div>
             </fieldset>
             <h3>
-                <span class="title_text">Property Images</span>
+                <span class="title_text">Property Files</span>
             </h3>
             <fieldset>
-
-                <div class="form-group">Select image to upload :<br>
+                <ul>
+                    <li><b>Instructions</b></li>
+                    <li class="mt-2">&rarr;  For multiple selection : please hold CTRL and select multiple files from selection window</li>
+                    <li>&rarr;  You can also select videos from same selection window</li>
+                    <li>&rarr;  First selected image is your main property image</li>
+                </ul>
+                <div class="form-group mt-2"><b>Select files to upload :</b><br>
                     <input multiple class="" type="file" name="fileToUpload" id="property-file" style="border: 0px solid #ebebeb;">
                 </div>
 
@@ -406,28 +521,28 @@
             </h3>
             <fieldset>
 
-                <div class="form-group" style="margin-bottom: 3px;">
+                <div class="form-group" style="margin-bottom: 3px;display: block">
                     <label>Name :</label>
-                    <input class="form-control w-25" id="contact-name" name="location" type="text" style="margin-left: 0.6rem!important">
+                    <input class="form-control col-md-4" id="contact-name" name="location" type="text">
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-name-validate">
+                <div class="text-danger mb-2" style="display: none;" id="contact-name-validate">
                     <li>Name is required</li>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+                <div class="form-group mt-4" style="margin-bottom: 3px;display: block">
                     <label>Email :</label>
-                    <input class="form-control w-25" id="contact-email" name="location" type="email" style="margin-left: 0.6rem!important">
+                    <input class="form-control col-md-4" id="contact-email" name="location" type="email">
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-email-validate">
+                <div class="text-danger mb-2" style="display: none;" id="contact-email-validate">
                     <li>Email is required</li>
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-email-format-validate">
+                <div class="text-danger mb-2" style="display: none;" id="contact-email-format-validate">
                     <li>Email format is not valid</li>
                 </div>
-                <div class="form-group mt-4" style="margin-bottom: 3px;">
+                <div class="form-group mt-4" style="margin-bottom: 3px;display: block">
                     <label>Mobile :</label>
-                    <input class="form-control w-25" id="contact-mobile" name="location" type="text" style="margin-left: 0.2rem!important">
+                    <input class="form-control col-md-4" id="contact-mobile" name="location" type="text">
                 </div>
-                <div class="text-danger mb-2 ml-5 px-5" style="display: none;" id="contact-mobile-validate">
+                <div class="text-danger mb-2" style="display: none;" id="contact-mobile-validate">
                     <li>Mobile is required</li>
                 </div>
 
@@ -446,6 +561,8 @@
 <script src="{{ asset('wizard/vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('wizard/vendor/jquery-steps/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('wizard/js/main.js') }}"></script>
+<script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('theme-styles/js/custom.js') }}"></script>
+
 </body>
 
 </html>
@@ -464,15 +581,17 @@
     let propertyTitle = '';
     let propertyDescription = '';
     let propertyPrice = '';
+    let propertyPriceUnit = '.00';
+    let propertyPriceCurrency = 'PKR';
     let propertylandArea = '';
     let propertyUnit = '';
     let propertyExpireDate = '';
 
-    let bedroomFeature = '';
-    let bathroomFeature = '';
-    let kitchenFeature = '';
-    let storeRoomFeature = '';
-    let homeParkingSpaceFeature = '';
+    let bedroomFeature = '-1';
+    let bathroomFeature = '-1';
+    let kitchenFeature = '-1';
+    let storeRoomFeature = '-1';
+    let homeParkingSpaceFeature = '-1';
 
     let cornerFeature = '';
     let parkFacingFeature = '';
@@ -480,17 +599,21 @@
     let waterSupplyFeature = '';
     let suiGasFeature = '';
 
-    let builtinYearFeature = '';
-    let roomFeature = '';
-    let floorFeature = '';
-    let elevatorFeature = '';
-    let commercialParkingSpaceFeature = '';
+    let builtinYearFeature = '-1';
+    let roomFeature = '-1';
+    let floorFeature = '-1';
+    let elevatorFeature = '-1';
+    let commercialParkingSpaceFeature = '-1';
 
     let files = [];
 
     let contactName = '';
     let contactEmail = '';
     let contactMobile = '';
+
+    let UAECitiess = ["Umm al Qaywayn","Ras al-Khaimah","Muzayri\u2018","Murba\u1e29","Khawr Fakk\u0101n","Dubai","Dibba Al-Fujairah","Dibba Al-Hisn","Sharjah","Ar Ruways","Al Fujayrah","Al Ain","Ajman","Adh Dhayd","Abu Dhabi"];
+    let PAKCitiess = ["Chuhar Jamali","Timargara","Rawala Kot","Pir Jo Goth","Khairpur Mir\u2019s","Adilpur","Ziarat","Zhob","Zaida","Zahir Pir","Zafarwal","Yazman","Wazirabad","Chak Five Hundred Seventy-five","Warah","Wana","Vihari","Utmanzai","Uthal","Usta Muhammad","Umarkot","Ubauro","Turbat","Topi","Toba Tek Singh","Thul","Thatta","Tharu Shah","Taunsa","Tank","Tangwani","Tangi","Tando Muhammad Khan","Tando Mitha Khan","Tando Jam","Tando Bago","Tando Allahyar","Tando Adam","Tandlianwala","Talhar","Talamba","Talagang","Thal","Swabi","Surkhpur","Surab","Sukkur","Sukheke Mandi","Sohbatpur","Sodhri","Sobhodero","Skardu","S\u012bta Road","Sinjhoro","Sillanwali","Sibi","Sialkot","Shujaabad","Shorkot","Shinpokh","Shikarpur","Shekhupura","Sharqpur Sharif","Shakargarh","Shahr Sultan","Shahpur Chakar","Shahpur","Shahkot","Shahdadpur","Shahdad Kot","Shabqadar","Sehwan","Sargodha","Sarai Sidhu","Sarai Naurang","Sarai Alamgir","Sann","Sanjwal","Sangla Hill","Sanghar","Sambrial","Samaro","Sakrand","Saidu Sharif","Sahiwal","Sahiwal","Saddiqabad","Rustam","Rojhan","Rohri","Renala Khurd","Rawalpindi","Ratodero","Rasulnagar","Ranipur","Rajo Khanani","Rajanpur","Raja Jang","Raiwind","Rahim Yar Khan","Goth Radhan","Chenab Nagar","Quetta","Qila Saifullah","Qila Abdullah","Kambar","Qadirpur Ran","Pithoro","Pishin","Pir Mahal","Pindi Gheb","Pindi Bhattian","Pind Dadan Khan","Goth Phulji","Phalia","Peshawar","Pattoki","Pasrur","Pasni","Parachinar","Pano Aqil","Panjgur","Pakpattan","Paharpur","Pad Idan","Pabbi","Ormara","Okara","Nushki","Nowshera","New Mirpur","Nawabshah","Naushahro Firoz","Naushahra Virkan","Naudero","Nasirabad","Narowal","Narang Mandi","Naukot","Nankana Sahib","Nabisar","Muzaffargarh","Muzaffar\u0101b\u0101d","Mustaf\u0101b\u0101d","Musa Khel Bazar","Murree","Muridke","Multan","Moro","Mithi","Mitha Tiwana","Mirwah Gorchani","Mirpur Sakro","Mirpur Mathelo","Mirpur Khas","Mirpur Bhtoro","Miro Khan","Miran Shah","Mingora","Minchianabad","Mianwali","Mian Channun","Mehrabpur","Mehar","Matli","Matiari","Mastung","Mardan","Mansehra","Mankera","Mangla","Mandi Bahauddin","Mananwala","Mamu Kanjan","Malir Cantonment","Malakwal","Malakand","Mailsi","Madeji","Mach","Loralai","Lodhran","Liliani","Layyah","Larkana","Landi Kotal","Lalian","Lala Musa","Lakki","Lakhi","Lahore","Ladhewala Waraich","Lachi","Kunri","Kunjah","Kundian","Kulachi","Kot Sultan","Kot Samaba","Kotri","Kot Rajkour","Kot Radha Kishan","Kot Mumin","Kot Malik Barkhurdar","Kotli Loharan","Kotli","Kot Ghulam Muhammad","Kot Diji","Kot Addu","Kohlu","Kohat","Khuzdar","Khush\u0101b","Khurrianwala","Khewra","Kharian","Kharan","Karak","Khanpur","Khanpur Mahar","Khangarh","Khangah Dogran","Khanewal","Khandowa","Khalabat","Khairpur Nathan Shah","Khairpur Tamewah","Khairpur","Khadro","Keti Bandar","Keshupur","Kasur","Kashmor","Karor","Kario Ghanwar","Karaundi","Karachi","Kanganpur","Kandiaro","Kandiari","Kandhkot","Kamra","Kamoke","Chak One Hundred Twenty Nine Left","Kamar Mushani","Kamalia","Kalur Kot","Kallar Kahar","Kaleke Mandi","Kalat","Kalaswala","Kalabagh","Kahuta","Kahror Pakka","Kahna Nau","Kadhan","Kabirwala","Johi","Jiwani","Chak Jhumra","Jhol","Jhelum","Jhawarian","Dera Allahyar","Jhang Sadr","Jauharabad","Jatoi Shimali","Jati","Jaranwala","Jandiala Sher Khan","Jand","Jamshoro","Jampur","Jalalpur Pirwala","Jalalpur Jattan","Jahanian Shah","Jacobabad","Islamkot","Islamabad","Hyderabad","Hujra Shah Muqim","Hingorja","Hazro City","Havelian","Haveli Lakha","Hasilpur","Chak Thirty-one -Eleven Left","Harunabad","Harnoli","Harnai","Haripur","Hangu","Hala","Hafizabad","Hadali","Gwadar","Gujrat","Gujranwala","Gujar Khan","Gojra","Gilgit","Ghotki","Ghauspur","Gharo","Garh Maharaja","Garhiyasin","Garhi Khairo","Goth Garelo","Gandava","Gambat","Gakuch","Gadani","Fort Abbas","Fazilpur","Chak Two Hundred Forty-nine Thal Development Authority","Faruka","Faqirwali","Faisalabad","Eminabad","Dunyapur","Dunga Bunga","Dullewala","Duki","Dokri","Doaba","Upper Dir","Diplo","Dipalpur","Dinan Bashnoian Wala","Dinga","Dijkot","Digri","Dhoro Naro","Dhaunkal","Dhanot","Dera Ismail Khan","Dera Ghazi Khan","Dera Bugti","Daur","Daultala","Daulatpur","Daud Khel","Daska Kalan","Darya Khan Marri","Darya Khan","Daromehar","Dalbandin","Dajal","Daira Din Panah","Daggar","Dadu","Dadhar","Chunian","Chuchar-kana Mandi","Chhor","Choa Saidan Shah","Chitral","Chishtian","Chiniot","Chilas","Chichawatni","Cherat Cantonement","Chawinda","Charsadda","Chamber","Chaman","Chakwal","Chak Azam Sahu","Chak","B\u016brew\u0101la","Bulri","Bozdar Wada","Bhopalwala","Bhit Shah","Bhiria","Bhimbar","Bhera","Bhawana","Bhan","Bhalwal","Bhakkar","Mianke Mor","Bhag","Berani","Bela","Begowala","Bat Khela","Battagram","Basirpur","Barkhan","Bannu","Bandhi","Bakhri Ahmad Khan","Bahawalpur","Bahawalnagar","Bagh","Bagarji","Baffa","Badin","Baddomalhi","Awaran","Attock City","Arifwala","Aman Garh","Alizai","Alipur","Aliabad","Akora","Ahmadpur East","Abbottabad","Jhang City","Bahawalnagar","Gulishah Kach","Nowshera Cantonment","Alik Ghund","Khadan Khak","Ahmadpur Sial","New B\u0101d\u0101h","Dandot RS","Dera Murad Jamali","J\u0101m S\u0101hib","Chowki Jamali","Setharja Old","Risalpur Cantonment","Noorabad","Alpurai","Shingli Bala","Malakwal City","Mehmand Chak","Basti Dosa","Moza Shahwala","Eidgah","Dasu","Barishal","Athmuqam","Nazir Town","Amirabad","Kakad Wari Dir Upper","Hattian Bala","Ashanagro Koto"];
+
 
     function selectPurpose(type) {
         if (type === 'buy') {
@@ -557,6 +680,7 @@
         document.getElementById('type-farm-house').classList.add("un-selected-button");
         document.getElementById('type-room').classList.add("un-selected-button");
         document.getElementById('type-pent-house').classList.add("un-selected-button");
+        document.getElementById('type-bed-space').classList.add("un-selected-button");
         if(type === 'house'){
             document.getElementById('type-house').classList.add("selected-button");
             document.getElementById('type-house').classList.remove("un-selected-button");
@@ -585,6 +709,10 @@
             document.getElementById('type-pent-house').classList.add("selected-button");
             document.getElementById('type-pent-house').classList.remove("un-selected-button");
             propertyTypeDetail = 'Pent House';
+        }else if(type === 'bed-space'){
+            document.getElementById('type-bed-space').classList.add("selected-button");
+            document.getElementById('type-bed-space').classList.remove("un-selected-button");
+            propertyTypeDetail = 'bed-space';
         }
     }
 
@@ -669,24 +797,42 @@
     //get cities
     function getCities(){
         let country = (document.getElementById('select-country').value);
-        $.ajax({
-            type: "POST",  //type of method
-            url: "http://finders.com/api/cities/get",  //your page
-            data: {country: country},// passing the values
-            success: function (res) {
-                res = JSON.parse(res);
-                document.getElementById('select-city').innerHTML = '';
-                let child =  document.createElement("option");
-                child.innerHTML = "Select City";
-                document.getElementById('select-city').appendChild(child);
-                for(let i=0; i<res.length; i++){
-                    let child =  document.createElement("option");
-                    child.innerHTML = res[i];
-                    child.value = res[i];
-                    document.getElementById('select-city').appendChild(child);
-                }
-            }
-        });
+        if(country === -1 || country === '-1' || country === '' || country === undefined || country === 'undefined'){
+            countrySelected = 'all';
+        }else{
+            countrySelected = country;
+        }
+        document.getElementById('cities-list').innerHTML = '';
+        let res = [];
+        if(country === 'PK'){
+            res = PAKCitiess;
+        }else if(country === 'AE'){
+            res = UAECitiess;
+        }
+        for(let i=0; i<res.length; i++){
+            let child =  document.createElement("option");
+            // child.innerHTML = res[i];
+            child.value = res[i];
+            document.getElementById('cities-list').appendChild(child);
+        }
+        // $.ajax({
+        //     type: "POST",  //type of method
+        //     url: "http://gofindee.com/api/cities/get",  //your page
+        //     data: {country: country},// passing the values
+        //     success: function (res) {
+        //         res = JSON.parse(res);
+        //         document.getElementById('select-city').innerHTML = '';
+        //         let child =  document.createElement("option");
+        //         child.innerHTML = "Select City";
+        //         document.getElementById('select-city').appendChild(child);
+        //         for(let i=0; i<res.length; i++){
+        //             let child =  document.createElement("option");
+        //             child.innerHTML = res[i];
+        //             child.value = res[i];
+        //             document.getElementById('select-city').appendChild(child);
+        //         }
+        //     }
+        // });
     }
     let currentStep = 0;
     function stepForward(){
@@ -740,6 +886,8 @@
     }
 
     function saveProperty() {
+        propertyPriceUnit = document.getElementById('price-unit').value;
+        propertyPriceCurrency = document.getElementById('price-currency').value;
         let formData = new FormData();
         formData.append('propertyPurpose', propertyPurpose);
         formData.append('propertyType', propertyType);
@@ -750,6 +898,8 @@
         formData.append('propertyTitle', propertyTitle);
         formData.append('propertyDescription', propertyDescription);
         formData.append('propertyPrice', propertyPrice);
+        formData.append('propertyPriceUnit', propertyPriceUnit);
+        formData.append('propertyPriceCurrency', propertyPriceCurrency);
         formData.append('propertyLandArea', propertylandArea);
         formData.append('propertyUnit', propertyUnit);
         formData.append('propertyExpireDate', propertyExpireDate);
@@ -776,9 +926,11 @@
         for(let i=0; i<files.length;i++){
             formData.append('images[]', files[i]);
         }
+        successNotification('Please wait....');
+
         $.ajax({
             type: "POST",  //type of method
-            url: "http://finders.com/api/property",  //your page
+            url: "http://gofindee.com/api/property",  //your page
             data: formData,// passing the values
             contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
             processData: false, // NEEDED, DON'T OMIT THIS
@@ -786,7 +938,7 @@
                 //res = JSON.parse(res);
                 successNotification('Property Saved Successfully');
                 setTimeout(function () {
-                    window.location.href = "http://finders.com";
+                   window.location.href="http://gofindee.com/";
                 }, 2000);
             }
         });
@@ -800,6 +952,26 @@
         setTimeout(function () {
             x.className = x.className.replace("show", "");
         }, 2000);
+    }
+
+    function islogin() {
+        if(!localStorage.hasOwnProperty('id')){
+            return;
+        }
+        $.ajax({
+            type: "GET",  //type of method
+            url:    `http://gofindee.com/api/user/${localStorage.getItem('id')}/get`,  //your page
+            success: function (res) {
+                res = JSON.parse(res);
+                if(res.status){
+                    document.getElementById('contact-mobile').value = res.phone;
+                    document.getElementById('contact-name').value = res.name;
+                    document.getElementById('contact-email').value = res.email;
+                }else{
+
+                }
+            }
+        });
     }
 
 </script>

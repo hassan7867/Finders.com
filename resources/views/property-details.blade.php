@@ -1,13 +1,12 @@
 @extends('top-nav')
 @section('content')
-    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
-    <script  type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.main.js') }}" ></script>
-    <script src="../js/app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.main.js') }}"></script>
+    {{--<script src="../js/app.js"></script>--}}
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>--}}
+    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--}}
     <link rel="stylesheet" href="<?php echo asset('css/stylesheet.css')?>" type="text/css">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
+    {{--    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">--}}
     <style>
 
         body {
@@ -15,30 +14,30 @@
         }
 
         .success-btn-custom {
-            background: #002F34;
+            background: #55407d;
             color: white;
-            border: 1px solid #002F34;
+            border: 1px solid #55407d;
             font-weight: bold;
         }
 
         .success-primary-btn-custom {
-            background: #002F34;
+            background: #55407d;
             color: white;
-            border: 1px solid #002F34;
+            border: 1px solid #55407d;
             font-weight: bold;
             padding: 5px 5px;
             border-radius: 2px;
             width: 100px;
         }
 
-        .success-btn-custom:hover,  .success-btn-custom:active{
-            background: #002F34;
+        .success-btn-custom:hover, .success-btn-custom:active {
+            background: #55407d;
             color: white;
             font-weight: bold;
         }
 
         .selected-button {
-            background: #002F34;
+            background: #55407d;
             color: white;
             font-weight: bold;
             text-align: center;
@@ -51,8 +50,8 @@
 
         .un-selected-button {
             background: #f8f9fa;
-            color: #002F34;
-            border: 1px solid #002F34;
+            color: #55407d;
+            border: 1px solid #55407d;
             font-weight: bold;
             text-align: center;
             padding: 5px;
@@ -61,7 +60,7 @@
         }
 
         .un-selected-button:hover {
-            background: #002F34;
+            background: #55407d;
             color: white;
         }
 
@@ -101,22 +100,33 @@
             animation: fadein 0.5s, fadeout 0.5s 2.5s;
         }
 
-        .active-top-link{
-            background: white; border-radius: 4px; color: #002F34 !important;
+        .active-top-link {
+            background: white;
+            border-radius: 4px;
+            color: #002F34 !important;
         }
 
-        .property-card{
-            background: white; padding: 5px; border-radius: 2px; border-bottom: 4px solid grey; z-index: 1; cursor: pointer;
+        .property-card {
+            background: white;
+            padding: 5px;
+            border-radius: 2px;
+            border-bottom: 20px solid #55407d;
+            border-top: 20px solid #55407d;
+            z-index: 1;
+            cursor: pointer;
         }
 
-        .search-card{
-            background: white; padding: 10px; border-radius: 2px; border-bottom: 5px solid grey; z-index: 1;
+        .search-card {
+            background: white;
+            padding: 10px;
+            border-radius: 2px;
+            border-bottom: 5px solid grey;
+            z-index: 1;
         }
-        .search-card:hover{
-            border-bottom: 5px solid #002F34; z-index: 1;
-        }
-        .property-card:hover{
-            border-bottom: 4px solid #002F34; cursor: pointer;
+
+        .search-card:hover {
+            border-bottom: 5px solid #002F34;
+            z-index: 1;
         }
 
         div.image-gallery {
@@ -124,6 +134,7 @@
             float: left;
             width: 180px;
             height: 180px;
+            border: 5px solid #55407d;
         }
 
         div.image-gallery:hover {
@@ -134,80 +145,172 @@
             width: 100%;
             height: 100%;
         }
+        div.image-gallery video {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
 
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <body>
-    <div class="container mt-3">
+    <body onload="getPropertyId(window.location.href.split('/')[4])">
+    <div style="margin-top: 140px"></div>
+    <div class="mt-3 mb-3 ml-3 mr-3">
         @if(!empty($properties))
-                <div class="mt-2 property-card"   style="padding: 10px ;margin-left: 0px !important;margin-right: 0px !important;">
-                   <div class="row">
-                       <div class="col-md-8">
-                           <h1><b>Property Details</b></h1>
-                       </div>
-                       <div class="col-md-4 text-right">
-                           <h1><b>Property ID : {{$properties->id_property}}</b></h1>
-                       </div>
-                   </div>
-                    <div>
+            <div class="mt-2 property-card"
+                 style="padding: 10px ;margin-left: 0px !important;margin-right: 0px !important;">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3><b>Property Details</b></h3>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <h3><b>Property ID : {{$properties->id_property}}</b></h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3><b>{{$properties->title}}</b></h3>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <h3><span><b>{{$properties->price_currency}} {{$properties->price}}
+                                        @if($properties->price_unit != ".00")
+                                            {{$properties->price_unit}}
+                                        @endif
+                                            </b></span></h3>
+                        </div>
+                    </div>
+                    @if($properties->purpose == 'forSale')
                         <div class="row">
-                            <div class="col-md-8">
-                                <h1><b>{{$properties->title}}</b></h1>
-
+                            <div class="col-md-6">
+                                <h4 class="mt-2"><span style="color: #1e7e34"><b>For Sale</b></span></h4>
                             </div>
-                            <div class="col-md-4 text-right">
-                                    <h2><span><b>PKR {{$properties->price}}</b></span></h2>
+                            <div class="col-md-6 text-right">
+                                <h6><span><b>Contact person : </b><b id="contact-name"></b></span></h6>
                             </div>
                         </div>
-                        @if($properties->purpose == 'forSale')
-                            <h4 class="mt-2"><span style="color: #1e7e34"><b>For Sale</b></span></h4>
-                        @endif
-                        @if($properties->purpose == 'forRent')
-                            <h4 class="mt-2"><span style="color: #007bff"><b>For Rent</b></span></h4>
-                        @endif
-                        <h3 style="color: grey">{{$properties->location}}, {{$properties->city}}, {{$properties->country}}</h3>
-                        <div class="mt-1">
-                            @if(!empty($properties->home_features))
+                    @endif
+                    @if($properties->purpose == 'forRent')
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="mt-2"><span style="color: #007bff"><b>For Rent</b></span></h4>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <h6><span><b>Contact person : </b><b id="contact-name"></b></span></h6>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 style="color: grey">{{$properties->location}}, {{$properties->city}}
+                                , {{$properties->country}}</h3>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h6><span><b>Phone number : </b><b id="contact-mobile"></b></span></h6>
+                        </div>
+                    </div>
+                    <div class="mt-1">
+                        @if(!empty($properties->home_features))
+                            @if(($properties->home_features->bedrooms) != -1)
                                 <span title="Bedrooms" style="font-size: 20px"><img src="{{asset("img/bed.svg")}}" style="width: 25px; height: 25px"> {{$properties->home_features->bedrooms}}</span>
+                            @endif
+                            @if(($properties->home_features->bathrooms) != -1)
                                 <span title="Bathrooms" style="font-size: 20px; margin-left: 15px"><img src="{{asset("img/bathrooms.svg")}}" style="width: 20px; height: 20px"> {{$properties->home_features->bathrooms}}</span>
+                            @endif
+                            @if(($properties->home_features->home_parking_space) != -1)
                                 <span title="Parking space" style="font-size: 20px; margin-left: 15px"><img src="{{asset("img/parking.svg")}}" style="width: 20px; height: 20px"> {{$properties->home_features->home_parking_space}}</span>
-                                <span title="Land area" style="font-size: 20px; margin-left: 15px"><img src="{{asset("img/area.svg")}}" style="width: 18px; height: 18px"> {{$properties->land_area}} {{$properties->unit}}</span>
+                             @endif
+                                 <span title="Land area" style="font-size: 20px; margin-left: 15px"><img src="{{asset("img/area.svg")}}" style="width: 18px; height: 18px"> {{$properties->land_area}} {{$properties->unit}}</span>
                             @endif
                             @if(!empty($properties->commercial_features))
-                                <span title="Rooms" style="font-size: 20px"><img src="{{asset("img/rooms.svg")}}" style="width: 20px; height: 20px"> {{$properties->commercial_features->rooms}}</span>
-                                <span title="Floors" style="font-size: 20px; margin-left: 15px"><img src="{{asset("img/floors.svg")}}" style="width: 25px; height: 25px"> {{$properties->commercial_features->floors}}</span>
-                                <span title="Parking space" style="font-size: 20px; margin-left: 15px"><img src="{{asset("img/parking.svg")}}" style="width: 20px; height: 20px"> {{$properties->commercial_features->commercial_parking_space}}</span>
-                                <span title="Land area" style="font-size: 20px; margin-left: 15px"><img src="{{asset("img/area.svg")}}" style="width: 18px; height: 18px"> {{$properties->land_area}} {{$properties->unit}}</span>
+                                @if(($properties->commercial_features->rooms) != -1)
+                                    <span title="Rooms" style="font-size: 20px"><img src="{{asset("img/rooms.svg")}}"
+                                                                                 style="width: 20px; height: 20px"> {{$properties->commercial_features->rooms}}</span>
+                                @endif
+                                @if(($properties->commercial_features->floors) != -1)
+                                    <span title="Floors" style="font-size: 20px; margin-left: 15px"><img
+                                            src="{{asset("img/floors.svg")}}" style="width: 25px; height: 25px"> {{$properties->commercial_features->floors}}</span>
+                                @endif
+                                @if(($properties->commercial_features->commercial_parking_space) != -1)
+                                    <span title="Parking space" style="font-size: 20px; margin-left: 15px"><img
+                                            src="{{asset("img/parking.svg")}}" style="width: 20px; height: 20px"> {{$properties->commercial_features->commercial_parking_space}}</span>
+                                @endif
+                                        <span title="Land area" style="font-size: 20px; margin-left: 15px"><img
+                                            src="{{asset("img/area.svg")}}"
+                                            style="width: 18px; height: 18px"> {{$properties->land_area}} {{$properties->unit}}</span>
                             @endif
                             @if(!empty($properties->plot_features))
-                                <span title="Land area" style="font-size: 20px;"><img src="{{asset("img/area.svg")}}" style="width: 18px; height: 18px"> {{$properties->land_area}} {{$properties->unit}}</span>
+                                <span title="Land area" style="font-size: 20px;"><img src="{{asset("img/area.svg")}}"
+                                                                                      style="width: 18px; height: 18px"> {{$properties->land_area}} {{$properties->unit}}</span>
                             @endif
-                        </div>
-                        <h6 class="mt-1" style="color: grey">Added on {{$properties->date_posting}}</h6>
-                        <div class="row mt-4">
-                            <div class="col-md-9">
-                                <h2><b>Property Images</b></h2>
+                    </div>
+                    <h6 class="mt-3" style="color: grey">Added on {{$properties->date_posting}}</h6>
+                    <hr>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h3><b>Property Attachments</b></h3>
+                            <div class="row heading mt-4">
+                                @foreach ($properties['images'] as $image)
+                                    <div>
+                                        <div class="image-gallery">
+                                            @if($image->type == 'img')
+                                                <a target="_blank" href="http://gofindee.com/api/property/image/get?attachment={{$image->image_path}}">
+                                                    <img src="http://gofindee.com/api/property/image/get?attachment={{$image->image_path}}"
+                                                         width="600" height="400"
+                                                         alt="click here to open file">
+                                                </a>
+                                            @endif
+                                            @if($image->type == 'video')
+                                                    <a target="_blank" href="http://gofindee.com/api/property/image/get?attachment={{$image->image_path}}">
+                                                    <video width="600" height="400" controls>
+                                                        <source src="http://gofindee.com/api/property/image/get?attachment={{$image->image_path}}" type="video/mp4">
+                                                        <source src="http://gofindee.com/api/property/image/get?attachment={{$image->image_path}}" type="video/ogg">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                    </a>
+                                             @endif
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="col-md-3 text-right">
-                                <button class="success-primary-btn-custom" data-toggle="modal" data-target="#call-modal" onclick="getCallInfo({{$properties->id}})">Call</button>
-                                <button class="success-primary-btn-custom" data-toggle="modal" data-target="#email-modal" onclick="setPropertyInfo({{$properties->id_property}}, {{$properties->id}})">Email</button>
-                            </div>
                         </div>
-                        <div class="row heading mt-4">
-                            @foreach ($properties['images'] as $image)
+                        <div class="col-md-6">
+                            <form>
                                 <div>
-                                    <div class="image-gallery">
-                                        <a target="_blank" href="${values.url}">
-                                            <img src="http://finders.com/api/property/image/get?attachment={{$image->image_path}}" width="600" height="400"
-                                                 alt="click here to open file">
-                                        </a>
+                                    <h3 class="mt-2"><b>Send Email</b></h3>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Email:</label>
+                                        <input type="text" name="senderEmail" class="form-control" id="sender-email"
+                                               placeholder="enter your email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Phone:</label>
+                                        <input type="text" name="senderPhone" class="form-control" id="sender-phone"
+                                               placeholder="enter your contact number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Message:</label>
+                                        <textarea name="senderMessage" class="form-control" id="sender-message">
+                                                </textarea>
                                     </div>
                                 </div>
-                            @endforeach
+                                <div class="modal-footer">
+                                    <button id="send-btn" style="display: inline" type="button"
+                                            class="btn success-btn-custom" onclick="sendEmail()">Send message
+                                    </button>
+                                    <button style="display: none" class="btn success-btn-custom" id="sending-btn">
+                        <span class="spinner-border spinner-border-sm" role="status"
+                              aria-hidden="true"></span> Sending
+                                    </button>
+
+                                </div>
+                            </form>
+                            {{--<button class="success-primary-btn-custom" data-toggle="modal" data-target="#call-modal" onclick="getCallInfo({{$properties->id}})">Call</button>--}}
+                            {{--<button class="success-primary-btn-custom" data-toggle="modal" data-target="#email-modal" onclick="setPropertyInfo({{$properties->id_property}}, {{$properties->id}})">Email</button>--}}
                         </div>
                     </div>
                 </div>
+            </div>
         @endif
     </div>
     </body>
@@ -222,10 +325,12 @@
                     </button>
                 </div>
                 <div class="row ml-3 mt-2">
-                    <div class="col-3">Name</div> <div class="col-4" id="contact-name"></div>
+                    <div class="col-3">Name</div>
+                    <div class="col-4" id="contact-name"></div>
                 </div>
                 <div class="row ml-3 mb-5">
-                    <div class="col-3">Tel</div> <div class="col-4" id="contact-mobile"></div>
+                    <div class="col-3">Tel</div>
+                    <div class="col-4" id="contact-mobile"></div>
                 </div>
             </div>
         </div>
@@ -245,11 +350,13 @@
                         <h5 class="mt-2"></h5>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Email:</label>
-                            <input type="text" name="senderEmail" class="form-control" id="sender-email" placeholder="enter your email">
+                            <input type="text" name="senderEmail" class="form-control" id="sender-email"
+                                   placeholder="enter your email">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Phone:</label>
-                            <input type="text"  name="senderPhone"  class="form-control" id="sender-phone" placeholder="enter your contact number">
+                            <input type="text" name="senderPhone" class="form-control" id="sender-phone"
+                                   placeholder="enter your contact number">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Message:</label>
@@ -258,7 +365,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="send-btn" style="display: inline" type="button" class="btn success-btn-custom" onclick="sendEmail()">Send message</button>
+                        <button id="send-btn" style="display: inline" type="button" class="btn success-btn-custom"
+                                onclick="sendEmail()">Send message
+                        </button>
                         <button style="display: none" class="btn success-btn-custom" id="sending-btn">
                         <span class="spinner-border spinner-border-sm" role="status"
                               aria-hidden="true"></span> Sending
@@ -274,10 +383,20 @@
     <div id="error-notification"></div>
     <script>
         let currentEmailPropertyId = -1;
+
+        window.onload = function() {
+            getPropertyId(window.location.href.split('/')[4])
+        };
+        function getPropertyId(id) {
+            getCallInfo(id);
+            setPropertyInfo(id, id);
+
+        }
+
         function getCallInfo(propertyId) {
             $.ajax({
                 type: "GET",  //type of method
-                url: `http://finders.com/api/property/${propertyId}/contact/get`,  //your page
+                url: `http://gofindee.com/api/property/${propertyId}/contact/get`,  //your page
                 success: function (res) {
                     res = JSON.parse(res);
                     document.getElementById('contact-name').innerHTML = res.name;
@@ -286,7 +405,7 @@
             });
         }
 
-        function sendEmail(){
+        function sendEmail() {
             document.getElementById('send-btn').style.display = 'none';
             document.getElementById('sending-btn').style.display = 'inline';
             let email = document.getElementById('sender-email').value;
@@ -294,22 +413,23 @@
             let message = document.getElementById('sender-message').value;
             $.ajax({
                 type: "POST",  //type of method
-                url: "http://finders.com/api/email/send",  //your page
-                data: {email: email, phone: phone, message: message, propertyId : currentEmailPropertyId},// passing the values
+                url: "http://gofindee.com/api/email/send",  //your page
+                data: {email: email, phone: phone, message: message, propertyId: currentEmailPropertyId},// passing the values
                 success: function (res) {
                     res = JSON.parse(res);
                     document.getElementById('send-btn').style.display = 'inline';
                     document.getElementById('sending-btn').style.display = 'none';
                     resetEmailForm();
                     document.getElementById('close-email-modal').click();
-                    if(res.status){
+                    if (res.status) {
                         successNotification(res.message);
-                    }else{
+                    } else {
                         errorNotification(res.message);
                     }
                 }
             });
         }
+
         function setPropertyInfo(propertyId, id) {
             currentEmailPropertyId = id;
             document.getElementById('sender-message').innerText = "I would like to inquire about your property of ID = " + propertyId + ". Please contact me at your earliest convenience."
